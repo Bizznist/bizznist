@@ -91,7 +91,7 @@
 
                 <div class="content">
                   <h2>Introduction</h2>
-                  <p>If your website is built using a JavaScript framework or follows a Single‑Page Application (SPA) model—think React, Vue, or Angular—you’ve likely faced a frustrating reality: Core Web Vitals like LCP, CLS, and INP often don’t get tracked properly. Traditional tools like Lighthouse, CrUX, or RUM scripts can miss soft navigations—those in-page updates that happen without a full reload.</p>
+                  <p>If your website is built using a JavaScript framework or follows a Single‑Page Application (SPA) model—think React, Vue, or Angular—you’ve likely faced a frustrating reality: Core Web Vitals like LCP, CLS, and INP often <strong> don’t get tracked properly</strong>. Traditional tools like Lighthouse, CrUX, or RUM scripts can miss soft navigations—those in-page updates that happen without a full reload.</p>
                   <h3>The Chrome 139 Origin Trial</h3>
                   <p>
 Chrome is addressing this blind spot through the Soft Navigations API available in Chrome 139. When enabled, this feature:                  </p>
@@ -100,6 +100,13 @@ Chrome is addressing this blind spot through the Soft Navigations API available 
                     <li> Triggers performance measurement for Largest Contentful Paint (LCP) after the soft navigation.</li>
                     <li>Adds <strong>navigationId</strong> so tracking systems can link UX metrics to each navigation event.</li>
                     <li>Extends CLS and INP tracking across soft navigations to ensure responsiveness and stability are measured per interaction—even within SPAs. </li>
+                  </ul>
+
+                  <h3>SEO & UX Impact</h3>
+                  <ul>
+                    <li>SPAs no longer remain “invisible” to Core Web Vitals reporting.</li>
+                    <li>Better visibility into real user experiences means more accurate performance audits and SEO performance tracking.</li>
+                    <li>Early adopters can proactively identify and fix UX bottlenecks before Google integrates these metrics publicly (e.g. CrUX dashboards).</li>
                   </ul>
 
                   <h3>How You Can Test It</h3>
