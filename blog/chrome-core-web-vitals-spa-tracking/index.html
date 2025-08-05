@@ -111,11 +111,53 @@ Chrome is addressing this blind spot through the Soft Navigations API available 
 
                   <h3>How You Can Test It</h3>
                   <ul>
+                    <li>In <strong>Chrome 139</strong>, enable flag: <strong>chrome://flags/#soft-navigation-heuristics.</strong></li>
+                    <li>Join the origin trial by embedding a meta‑tag or HTTP header token on your site.</li>
+                    <li>Optionally, enable <strong>Advanced Paint Attribution</strong> for deeper measurement fidelity.</li>
+                    <li>Ensure your analytics or RUM provider reads new fields like <strong>navigationId </strong>and <strong>interaction-contentful-paint</strong></li>
+                    <li>Document edge cases: auto-redirects,<strong> replaceState() </strong>usage, or custom navigational logic may not be caught—test thoroughly using real flows.</li>
+                  </ul>
+
+
+                  <h3>Caveats to Consider</h3>
+                  <ul>
                     <li>It's <strong>experimental</strong>—Chrome only, and only versions 139+.</li>
                     <li>Other browsers (Safari, Firefox) won’t support this yet.</li>
                     <li>Your performance tooling must adapt to ingest new metrics; older dashboards might ignore them</li>
                   </ul>
 
+
+                  <h3>🔁 Quick Recap Table</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Before</th>
+      <th>With Soft Navigations API</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SPA Traffic Tracking</td>
+      <td>Missed soft navigations</td>
+      <td>Measures LCP, CLS, INP in-page</td>
+    </tr>
+    <tr>
+      <td>Navigation Tracking</td>
+      <td>Page reload only</td>
+      <td>Navigation ID enables per-event tracking</td>
+    </tr>
+    <tr>
+      <td>RUM Data Granularity</td>
+      <td>Coarse metrics</td>
+      <td>Fine-grained, per-navigation UX metrics</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+                  
                   <h3>Why This Is a Game‑Changer</h3>
                   <p>This Chrome trial fills a critical gap. SPA-based websites can now begin closing the visibility gap—getting genuine real‑user feedback on performance. This positions you ahead of the curve when Google eventually updates its public dashboards like CrUX to include soft navigation metrics.</p>
                   <p>If you’re responsible for performance or SEO on an SPA, this is your moment to act—and gain that SEO competitive edge.</p>
