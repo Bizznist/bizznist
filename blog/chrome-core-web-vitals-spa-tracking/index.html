@@ -127,7 +127,7 @@ Chrome is addressing this blind spot through the Soft Navigations API available 
                   </ul>
 
 
-                  <h3>🔁 Quick Recap Table</h3>
+                  <h3>Quick Recap Table</h3>
 <table>
   <thead>
     <tr>
@@ -211,4 +211,53 @@ Chrome is addressing this blind spot through the Soft Navigations API available 
     text-align: left;
     margin: 10px 0;
   }
+
+  /* Clean Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+thead {
+  background-color: #f5f5f5;
+}
+
+th, td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+tr:hover {
+  background-color: #f0f8ff;
+}
+
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+    width: 100%;
+  }
+  thead {
+    display: none;
+  }
+  td {
+    position: relative;
+    padding-left: 50%;
+  }
+  td::before {
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    width: 45%;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+  td:nth-of-type(1)::before { content: "Feature"; }
+  td:nth-of-type(2)::before { content: "Before"; }
+  td:nth-of-type(3)::before { content: "With Soft Navigations API"; }
+}
+
   </style>
