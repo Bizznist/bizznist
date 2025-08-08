@@ -2819,3 +2819,23 @@ section,
     display: block;
   }
 }
+/* Show hamburger menu on mobile */
+.mobile-nav-toggle {
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 0;
+  color: #000; /* change to white if your header background is dark */
+  z-index: 1000;
+}
+
+@media (min-width: 992px) {
+  .mobile-nav-toggle {
+    display: none; /* hide on desktop */
+  }
+}
+
+@media (max-width: 991px) {
+  .mobile-nav-toggle {
+    display: block; /* show on mobile */
+  }
+}
