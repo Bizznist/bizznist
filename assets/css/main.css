@@ -2773,28 +2773,27 @@ section,
 @media (max-width: 991px) {
   #navmenu {
     position: absolute;
-    top: 60px; /* Adjust based on your header height */
+    top: 60px; /* match your header height */
     right: 0;
     width: 100%;
     background: #fff;
-    padding: 15px 0;
     display: none;
     flex-direction: column;
     align-items: flex-start;
+    padding: 15px 0;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     z-index: 999;
   }
 
-  /* Show menu when mobile nav is active */
+  /* Show when mobile nav is active */
   body.mobile-nav-active #navmenu {
     display: flex;
   }
-
-  #navmenu ul {
-    width: 100%;
+#navmenu ul {
+    list-style: none;
     padding: 0;
     margin: 0;
-    list-style: none;
+    width: 100%;
   }
 
   #navmenu ul li {
@@ -2805,11 +2804,11 @@ section,
   #navmenu ul li a {
     display: block;
     width: 100%;
-    color: #000;
     text-decoration: none;
+    color: #000; /* Change if header is dark */
   }
 
-  /* Mobile dropdown styling */
+ /* Mobile dropdown handling */
   #navmenu .dropdown ul {
     display: none;
     padding-left: 20px;
@@ -2819,6 +2818,7 @@ section,
     display: block;
   }
 }
+
 /* Show hamburger menu on mobile */
 .mobile-nav-toggle {
   font-size: 28px;
