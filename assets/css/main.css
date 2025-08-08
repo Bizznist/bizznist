@@ -2830,12 +2830,12 @@ section,
 
 @media (min-width: 992px) {
   .mobile-nav-toggle {
-    display: none; /* hide on desktop */
+    display: none !important; /* hide on desktop */
   }
 }
 
 @media (max-width: 991px) {
   .mobile-nav-toggle {
-    display: block; /* show on mobile */
+     display: block !important; /* show on mobile */
   }
 }
