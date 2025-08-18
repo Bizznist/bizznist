@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /ads.txt
 Disallow: /*.html$
-Disallow: /*.txt$
 
 Sitemap: https://www.bizznist.com/sitemap.xml
