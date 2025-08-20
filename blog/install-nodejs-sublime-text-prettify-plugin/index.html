@@ -120,15 +120,32 @@ The HTML-CSS-JS Prettify plugin relies on Node.js to work. You’ll need Node.js
                     <li><strong>Verify Installation:</strong>   <p class="hint">Open your terminal (Command Prompt, PowerShell, or macOS/Linux Terminal) and run:</p>
                       <pre><code>node -v npm -v</code></pre>
                       <p>If both commands output version numbers (for example, <code>v22.3.0</code> and <code>10.8.1</code>), Node.js and npm are installed successfully.</p>
-
                     </li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+
+                    <h3>2. Install the HTML-CSS-JS Prettify Plugin</h3>
+                    <p>Check for Package Control:</p>
+                    <ul>
+                    <li>Open Command Palette (Ctrl+Shift+P / Cmd+Shift+P).</li>
+                    <li>Search for Package Control: Install Package Control (if not already installed).</li>
+                    </ul>
+                    <p>Install Prettify Plugin:</p>
+                    <ul>
+                    <li>Open Command Palette again.</li>
+                    <li>Type install → Select Package Control: Install Package.</li>
+                      <li>Search for prettify → Select HTML-CSS-JS Prettify.</li>
+                      </ul>
+
+                    <h3>3. Configure the Plugin</h3>
+                      <p>If the plugin doesn’t detect Node.js automatically:</p>
+                      <ul>
+                        <li>Open Command Palette → Type <code>htmlprettify</code> → Select <em>Set Node Path</em>.</li>
+                        <li>Enter the path to your Node.js executable:</li>
+                      </ul>
+                      <p class="os-label">Windows:</p>
+  <div class="code-block">C:/Program Files/nodejs/node.exe</div>
+  
+  <p class="os-label">macOS/Linux:</p>
+  <div class="code-block">/usr/local/bin/node</div>
                     <li></li>
                     <li></li>
                     <li></li>
@@ -247,5 +264,17 @@ tr:hover {
     .hint { color: #555; margin-top: 0; }
     pre { background: #f6f8fa; padding: 1rem; border-radius: .5rem; overflow-x: auto; }
     code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+      .code-block {
+      background: #f6f8fa;
+      padding: .75rem 1rem;
+      border-radius: .5rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+    }
+    .os-label {
+      font-weight: 600;
+      color: #2d3748;
+
   
   </style>
