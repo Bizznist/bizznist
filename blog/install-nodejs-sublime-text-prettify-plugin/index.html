@@ -118,17 +118,18 @@ The HTML-CSS-JS Prettify plugin relies on Node.js to work. You’ll need Node.js
                     <li><strong>Windows Only (Optional):</strong>The installer may offer extra tools like Chocolatey for native modules. Install if needed.</li>                    
                     <li><strong>Finish Installation</strong>and restart your terminal.</li>
                     <li><strong>Verify Installation:</strong>   <p class="hint">Open your terminal (Command Prompt, PowerShell, or macOS/Linux Terminal) and run:</p>
-                      <pre><code>node -v npm -v</code></pre>
+                      <pre><code>node -v 
+                        npm -v</code></pre>
                       <p>If both commands output version numbers (for example, <code>v22.3.0</code> and <code>10.8.1</code>), Node.js and npm are installed successfully.</p>
                     </li>
 
                     <h3>2. Install the HTML-CSS-JS Prettify Plugin</h3>
-                    <p>Check for Package Control:</p>
+                    <p>1. Check for Package Control:</p>
                     <ul>
                     <li>Open Command Palette (Ctrl+Shift+P / Cmd+Shift+P).</li>
                     <li>Search for Package Control: Install Package Control (if not already installed).</li>
                     </ul>
-                    <p>Install Prettify Plugin:</p>
+                    <p>2. Install Prettify Plugin:</p>
                     <ul>
                     <li>Open Command Palette again.</li>
                     <li>Type install → Select Package Control: Install Package.</li>
@@ -138,8 +139,8 @@ The HTML-CSS-JS Prettify plugin relies on Node.js to work. You’ll need Node.js
                     <h3>3. Configure the Plugin</h3>
                       <p>If the plugin doesn’t detect Node.js automatically:</p>
                       <ul>
-                        <li>Open Command Palette → Type <code>htmlprettify</code> → Select <em>Set Node Path</em>.</li>
-                        <li>Enter the path to your Node.js executable:</li>
+                        <li>1. Open Command Palette → Type <code>htmlprettify</code> → Select <em>Set Node Path</em>.</li>
+                        <li>2. Enter the path to your Node.js executable:</li>
                       </ul>
                       <p class="os-label">Windows:</p>
                       <div class="code-block">C:/Program Files/nodejs/node.exe</div>
