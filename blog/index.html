@@ -1,16 +1,28 @@
 ---
 layout: default
-title: Blog
+title: BizzNist Blog
 ---
 
-<h1>BizzNist Blog</h1>
-<p>Insights on IT, websites, SEO, and growth — by Reema Roy.</p>
+<section class="blog-section">
+  <div class="container">
+    <header class="blog-header">
+      <h1>BizzNist Blog</h1>
+      <p>Insights on IT, websites, SEO, and growth — by Reema Roy.</p>
+    </header>
 
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>  
-      <small>— {{ post.date | date: "%B %d, %Y" }}</small>
-    </li>
-  {% endfor %}
-</ul>
+    <div class="blog-list">
+      {% for post in site.posts %}
+      <article class="blog-card">
+        <h2>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h2>
+        <p class="meta">{{ post.date | date: "%B %d, %Y" }}</p>
+        <p class="excerpt">
+          {{ post.excerpt | strip_html | truncate: 150 }}
+        </p>
+        <a class="read-more" href="{{ post.url | relative_url }}">Read More →</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
