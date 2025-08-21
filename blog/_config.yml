@@ -1,7 +1,7 @@
 title: BizzNist Blog
 description: IT, websites, SEO, and growth — by Reema Roy.
+baseurl: "/blog"
 url: "https://www.bizznist.com"
-baseurl: "" # keep empty when site is at root domain
 
 
 # Build settings
