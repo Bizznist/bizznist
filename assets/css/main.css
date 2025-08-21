@@ -2839,3 +2839,62 @@ section,
      display: block !important; /* show on mobile */
   }
 }
+
+
+.blog-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.blog-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.blog-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+.blog-card {
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+}
+
+.blog-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.blog-card .meta {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.blog-card .excerpt {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.blog-card .read-more {
+  color: #0077cc;
+  font-weight: bold;
+  text-decoration: none;
+}
