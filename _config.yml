@@ -3,6 +3,9 @@ description: IT, websites, SEO, and growth — by Reema Roy.
 baseurl: "" # root domain
 url: "https://www.bizznist.com"
 
+markdown: kramdown
+permalink: "/blog/:title/"
+
 # Plugins
 plugins:
   - jekyll-seo-tag
