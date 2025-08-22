@@ -1,0 +1,23 @@
+title: "BizzNist Blog"
+description: "IT, websites, SEO, and growth — by Reema Roy"
+url: "https://www.bizznist.com"
+baseurl: ""  # empty because blog is part of main domain
+
+markdown: kramdown
+permalink: /blog/:title/
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+collections:
+  posts:
+    output: true
+    permalink: /blog/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
