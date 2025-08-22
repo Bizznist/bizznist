@@ -1,3 +1,11 @@
+<head>
+  <meta charset="utf-8" />
+  <title>{{ page.meta_title | default: page.title }} | BizzNist</title>
+  <meta name="description" content="{{ page.meta_description | default: site.description }}">
+  <meta name="keywords" content="{{ page.meta_keywords | join: ', ' }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+</head>
+
 ---
 layout: default
 ---
