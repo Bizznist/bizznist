@@ -29,14 +29,16 @@
   {% include header.html %}
   <!-- End Header -->
 
-  <main id="main" style="
-    padding-top: 100px;
-    padding-left: 75px;
-    padding-right: 75px;">
+  <main id="main">
     {{ content }}
   </main>
 
 <style>
+  #main{
+    padding-top: 100px;
+    padding-left: 75px;
+    padding-right: 75px;
+  }
 @media (max-width: 768px) {
   #main {
     padding-top: 100px;
