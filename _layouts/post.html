@@ -1,14 +1,34 @@
-<article class="blog-post">
-  <h1 class="title">{{ page.title }}</h1>
-  <p class="date"><i class="bi bi-clock"></i> {{ page.date | date: "%B %d, %Y" }}</p>
+---
+layout: default
+---
 
-  {% if page.image %}
-  <div class="post-img">
-    <img src="{{ page.image }}" alt="{{ page.title }}">
-  </div>
-  {% endif %}
+<section id="blog-details" class="blog-details">
+  <div class="container" data-aos="fade-up">
 
-  <div class="post-content">
-    {{ content }}
+    <article class="blog-details">
+
+      {% if page.image %}
+      <div class="post-img">
+        <img src="{{ page.image }}" alt="{{ page.title }}" class="img-fluid">
+      </div>
+      {% endif %}
+
+      <h2 class="title">{{ page.title }}</h2>
+
+      <div class="meta-top">
+        <ul>
+          <li><i class="bi bi-person"></i> {{ page.author | default: "Admin" }}</li>
+          <li><i class="bi bi-clock"></i>
+            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content">
+        {{ content }}
+      </div>
+
+    </article>
+
   </div>
-</article>
+</section>
