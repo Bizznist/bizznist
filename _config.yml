@@ -12,10 +12,11 @@ plugins:
   - jekyll-sitemap
 
 # Posts setup
-collections:
-  posts:
+posts:
     output: true
     permalink: /blog/:title/
+    directory: blog/_posts
+
 
 defaults:
   - scope:
