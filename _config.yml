@@ -1,17 +1,14 @@
-title: "BizzNist Blog"
-description: "IT, websites, SEO, and growth — by Reema Roy"
+title: BizzNist
+description: IT, websites, SEO, and growth — by Reema Roy.
+baseurl: "" # root domain
 url: "https://www.bizznist.com"
-baseurl: ""
-url: "https://www.bizznist.com"
 
-
-markdown: kramdown
-permalink: /blog/:title/
-
+# Plugins
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
+# Posts setup
 collections:
   posts:
     output: true
@@ -20,6 +17,6 @@ collections:
 defaults:
   - scope:
       path: ""
-      type: "posts"
+      type: posts
     values:
       layout: post
