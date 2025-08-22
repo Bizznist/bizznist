@@ -1,0 +1,25 @@
+backend:
+  name: git-gateway
+  branch: main   # or the branch your site deploys from
+
+site_url: https://bizznist-blogs.netlify.app
+display_url: https://bizznist-blogs.netlify.app
+
+media_folder: "assets/uploads"   # where images get stored in your repo
+public_folder: "/assets/uploads" # how images are referenced on the site
+
+publish_mode: simple
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    folder: "blog/_posts"    # make sure this folder exists in your repo
+    create: true
+    extension: "md"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "Reema Roy" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
