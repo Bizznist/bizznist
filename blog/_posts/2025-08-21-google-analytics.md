@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Google Analytics
 date: 2024-11-17T15:31:00.000+05:30
 description: Google Analytics is a powerful web analytics tool that provides
