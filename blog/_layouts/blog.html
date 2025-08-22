@@ -1,0 +1,65 @@
+---
+layout: default
+---
+
+<section id="blog" class="blog section">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-header">
+      <h2>Latest Blogs</h2>
+      <p>Insights on IT, Websites, SEO & Growth</p>
+    </div>
+
+    <div class="row gy-4 posts-list">
+      {% for post in site.posts %}
+      <div class="col-xl-4 col-md-6">
+        <article class="blog-card">
+
+          {% if post.image %}
+          <div class="post-img">
+            <a href="{{ post.url | relative_url }}">
+              <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="img-fluid">
+            </a>
+          </div>
+          {% endif %}
+
+          <h2 class="title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </h2>
+
+          <div class="meta-top">
+            <ul>
+              <li class="d-flex align-items-center">
+                <i class="bi bi-person"></i> {{ post.author | default: "BizzNist Team" }}
+              </li>
+              <li class="d-flex align-items-center">
+                <i class="bi bi-clock"></i> {{ post.date | date: "%B %d, %Y" }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="content">
+            <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
+          </div>
+
+          <div class="read-more">
+            <a href="{{ post.url | relative_url }}">Read More</a>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination (optional) -->
+    <div class="blog-pagination">
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; Previous</a>
+      {% endif %}
+      <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | relative_url }}">Next &raquo;</a>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
