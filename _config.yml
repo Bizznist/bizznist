@@ -1,7 +1,9 @@
 title: "BizzNist Blog"
 description: "IT, websites, SEO, and growth — by Reema Roy"
 url: "https://www.bizznist.com"
-baseurl: ""  # empty because blog is part of main domain
+baseurl: ""
+url: "https://www.bizznist.com"
+
 
 markdown: kramdown
 permalink: /blog/:title/
