@@ -1,6 +1,8 @@
 ---
 layout: post
-title: Google Analytics
+title: "Google Analytics Setup"
+date: 2025-08-21
+author: "Reema Roy"
 date: 2024-11-17T15:31:00.000+05:30
 description: Google Analytics is a powerful web analytics tool that provides
   valuable insights into website performance, user behavior, and marketing
