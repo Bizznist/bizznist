@@ -1,1 +1,14 @@
+<article class="blog-post">
+  <h1 class="title">{{ page.title }}</h1>
+  <p class="date"><i class="bi bi-clock"></i> {{ page.date | date: "%B %d, %Y" }}</p>
 
+  {% if page.image %}
+  <div class="post-img">
+    <img src="{{ page.image }}" alt="{{ page.title }}">
+  </div>
+  {% endif %}
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>
