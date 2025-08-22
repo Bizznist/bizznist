@@ -2,33 +2,74 @@
 layout: default
 ---
 
-<section id="blog-details" class="blog-details">
-  <div class="container" data-aos="fade-up">
+<main class="main">
 
-    <article class="blog-details">
-
-      {% if page.image %}
-      <div class="post-img">
-        <img src="{{ page.image }}" alt="{{ page.title }}" class="img-fluid">
+  <!-- Page Title -->
+  <div class="page-title">
+    <div class="heading">
+      <div class="container">
+        <div class="row d-flex justify-content-center text-center">
+          <div class="col-lg-8">
+            <h1>{{ page.title }}</h1>
+          </div>
+        </div>
       </div>
-      {% endif %}
+    </div>
+    <nav class="breadcrumbs">
+      <div class="container">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li class="current">{{ page.title }}</li>
+        </ol>
+      </div>
+    </nav>
+  </div><!-- End Page Title -->
 
-      <h2 class="title">{{ page.title }}</h2>
+  <div class="container">
+    <div class="row">
 
-      <div class="meta-top">
-        <ul>
-          <li><i class="bi bi-person"></i> {{ page.author | default: "Admin" }}</li>
-          <li><i class="bi bi-clock"></i>
-            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
-          </li>
-        </ul>
+      <div class="col-lg-8">
+
+        <!-- Blog Details Section -->
+        <section id="blog-details" class="blog-details section">
+          <div class="container">
+
+            <article class="article">
+
+              {% if page.image %}
+              <div class="post-img">
+                <img src="{{ page.image }}" alt="{{ page.title }}" class="img-fluid">
+              </div>
+              {% endif %}
+
+              <div class="meta-top">
+                <ul>
+                  <li class="d-flex align-items-center">
+                    <i class="bi bi-person"></i>
+                    {{ page.author | default: "Reema Roy" }}
+                  </li>
+                  <li class="d-flex align-items-center">
+                    <i class="bi bi-clock"></i>
+                    <time datetime="{{ page.date | date_to_xmlschema }}">
+                      {{ page.date | date: "%B %d, %Y" }}
+                    </time>
+                  </li>
+                </ul>
+              </div><!-- End meta top -->
+
+              <div class="content">
+                {{ content }}
+              </div>
+
+            </article>
+
+          </div>
+        </section><!-- End Blog Details Section -->
+
       </div>
 
-      <div class="content">
-        {{ content }}
-      </div>
-
-    </article>
-
+    </div>
   </div>
-</section>
+
+</main>
