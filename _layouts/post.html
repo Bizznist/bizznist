@@ -2,13 +2,33 @@
 layout: default
 ---
 
-<h1>{{ page.title }}</h1>
-<p><small>By {{ page.author | default: "BizzNist Team" }} — {{ page.date | date: "%B %d, %Y" }}</small></p>
+<section id="blog-details" class="blog-details">
+  <div class="container" data-aos="fade-up">
 
-{% if page.image %}
-  <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
-{% endif %}
+    <article class="blog-details">
 
-<div class="post-content">
-  {{ content }}
-</div>
+      {% if page.image %}
+      <div class="post-img">
+        <img src="{{ page.image }}" alt="{{ page.title }}" class="img-fluid">
+      </div>
+      {% endif %}
+
+      <h2 class="title">{{ page.title }}</h2>
+
+      <div class="meta-top">
+        <ul>
+          <li><i class="bi bi-person"></i> {{ page.author | default: "Admin" }}</li>
+          <li><i class="bi bi-clock"></i>
+            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content">
+        {{ content }}
+      </div>
+
+    </article>
+
+  </div>
+</section>
