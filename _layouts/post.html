@@ -2,95 +2,13 @@
 layout: default
 ---
 
-<main class="main">
+<h1>{{ page.title }}</h1>
+<p><small>By {{ page.author | default: "BizzNist Team" }} — {{ page.date | date: "%B %d, %Y" }}</small></p>
 
-  <!-- Page Title -->
-  <div class="page-title">
-    <div class="heading">
-      <div class="container">
-        <div class="row d-flex justify-content-center text-center">
-          <div class="col-lg-8">
-            <h1>{{ page.title }}</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-    <nav class="breadcrumbs">
-      <div class="container">
-        <ol>
-          <li><a href="{{ "/" | relative_url }}">Home</a></li>
-          <li><a href="{{ "/blog/" | relative_url }}">Blog</a></li>
-          <li class="current">{{ page.title }}</li>
-        </ol>
-      </div>
-    </nav>
-  </div>
-  <!-- End Page Title -->
+{% if page.image %}
+  <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+{% endif %}
 
-  <div class="container">
-    <div class="row">
-
-      <div class="col-lg-8">
-
-        <!-- Blog Details -->
-        <section id="blog-details" class="blog-details section">
-          <div class="container">
-
-            <article class="article">
-
-              {% if page.image %}
-              <div class="post-img">
-                <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="img-fluid">
-              </div>
-              {% endif %}
-
-              <div class="meta-top">
-                <ul>
-                  <li class="d-flex align-items-center">
-                    <i class="bi bi-person"></i> {{ page.author | default: "BizzNist Team" }}
-                  </li>
-                  <li class="d-flex align-items-center">
-                    <i class="bi bi-clock"></i>
-                    <time datetime="{{ page.date | date_to_xmlschema }}">
-                      {{ page.date | date: "%B %d, %Y" }}
-                    </time>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="content">
-                {{ content }}
-              </div>
-
-            </article>
-
-          </div>
-        </section>
-        <!-- End Blog Details -->
-
-      </div>
-
-      <!-- Sidebar -->
-      <div class="col-lg-4">
-        <div class="sidebar">
-
-          <h3 class="sidebar-title">Recent Posts</h3>
-          <div class="sidebar-item recent-posts">
-            {% for post in site.posts limit:5 %}
-            <div class="post-item clearfix">
-              {% if post.image %}
-              <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
-              {% endif %}
-              <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
-              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
-            </div>
-            {% endfor %}
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</main>
+<div class="post-content">
+  {{ content }}
+</div>
