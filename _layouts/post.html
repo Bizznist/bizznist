@@ -32,7 +32,7 @@ layout: default
 
       <div class="col-lg-8">
 
-        <!-- Blog Details Section -->
+        <!-- Blog Details -->
         <section id="blog-details" class="blog-details section">
           <div class="container">
 
@@ -47,8 +47,7 @@ layout: default
               <div class="meta-top">
                 <ul>
                   <li class="d-flex align-items-center">
-                    <i class="bi bi-person"></i>
-                    {{ page.author | default: "Reema Roy" }}
+                    <i class="bi bi-person"></i> {{ page.author | default: "BizzNist Team" }}
                   </li>
                   <li class="d-flex align-items-center">
                     <i class="bi bi-clock"></i>
@@ -71,7 +70,7 @@ layout: default
 
       </div>
 
-      <!-- Sidebar (Optional, if you want one) -->
+      <!-- Sidebar -->
       <div class="col-lg-4">
         <div class="sidebar">
 
@@ -95,54 +94,3 @@ layout: default
   </div>
 
 </main>
-
-<style>
-  .page-title .heading {
-    padding-bottom: 40px;
-  }
-
-  .blog-details .content blockquote {
-    padding: 30px;
-    text-align: left;
-    margin: 10px 0;
-  }
-
-  /* Table Styling (matches your uploaded file) */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    font-size: 16px;
-    line-height: 1.6;
-  }
-  thead { background-color: #f5f5f5; }
-  th, td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  tr:hover { background-color: #f0f8ff; }
-
-  @media (max-width: 768px) {
-    table, thead, tbody, th, td, tr {
-      display: block;
-      width: 100%;
-    }
-    thead { display: none; }
-    td {
-      position: relative;
-      padding-left: 50%;
-    }
-    td::before {
-      position: absolute;
-      top: 12px;
-      left: 15px;
-      width: 45%;
-      white-space: nowrap;
-      font-weight: bold;
-    }
-    td:nth-of-type(1)::before { content: "Feature"; }
-    td:nth-of-type(2)::before { content: "Before"; }
-    td:nth-of-type(3)::before { content: "With Soft Navigations API"; }
-  }
-</style>
