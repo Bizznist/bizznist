@@ -5,7 +5,7 @@ description: Google Analytics is a powerful web analytics tool that provides
   valuable insights into website performance, user behavior, and marketing
   effectiveness. It helps website owners track and optimize their online
   presence to improve engagement and conversions.
-image: /assets/uploads/bizznist.png
+image: /assets/img/uploads/logo.png
 ---
 ## **Importance of Google Analytics**
 
