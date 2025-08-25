@@ -3,7 +3,10 @@ description: IT, websites, SEO, and growth — by Reema Roy.
 url: "https://www.bizznist.com"
 baseurl: ""   # keep empty since Netlify deploys at root
 
-permalink: /blog/:title/
+collections:
+  posts:
+    output: true
+    permalink: /blog/:title/
 
 # Plugins
 plugins:
