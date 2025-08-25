@@ -58,6 +58,24 @@ layout: default
                 </ul>
               </div><!-- End meta top -->
 
+              {% if page.thumbnail %}
+  <div class="thumbnail-container">
+    <img 
+      src="{{ page.thumbnail | resize: "800x" }}" 
+      alt="{{ page.title }} Featured Image" 
+      class="thumbnail"
+      loading="lazy"
+      srcset="{{ page.thumbnail | resize: "480x" }} 480w,
+              {{ page.thumbnail | resize: "768x" }} 768w,
+              {{ page.thumbnail | resize: "1024x" }} 1024w"
+      sizes="(max-width: 480px) 100vw,
+             (max-width: 768px) 100vw,
+             800px"
+    />
+  </div>
+{% endif %}
+
+
               <div class="content">
                 {{ content }}
               </div>
