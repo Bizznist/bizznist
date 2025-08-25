@@ -121,7 +121,7 @@ title: Blog
 
                   {% for page in (1..paginator.total_pages) %}
                   <li>
-                    <a href="{{ paginator.page_path: page }}" class="{% if page == paginator.page %}active{% endif %}">{{ page }}</a>
+                    <a href="{{ paginator.page_path | replace: ':num', page }}" class="{% if page == paginator.page %}active{% endif %}">{{ page }}</a>
                   </li>
                   {% endfor %}
 
