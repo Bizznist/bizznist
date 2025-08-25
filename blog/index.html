@@ -5,11 +5,10 @@ title: Blog
 
 <h1>Latest Blogs</h1>
 <ul class="blog-list">
-  {% for post in site.blog %}
+  {% for post in site.posts %}
     <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-      <br>
-      <small>{{ post.date | date: "%B %d, %Y" }}</small>
+      <a href="{{ post.url }}">{{ post.title }}</a><br>
+      <small>{{ post.date | date: "%B %d, %Y" }} — {{ post.author }}</small>
     </li>
   {% endfor %}
 </ul>
