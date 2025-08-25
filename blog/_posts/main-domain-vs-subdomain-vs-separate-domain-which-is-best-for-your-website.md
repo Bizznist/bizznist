@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Main Domain vs Subdomain vs Separate Domain: Which is Best for Your Website?"
 custom_slug: main-domain-vs-subdomain-vs-separate-domain
 date: 2025-08-25T12:22:00.000+05:30
