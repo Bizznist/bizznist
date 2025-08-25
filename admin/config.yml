@@ -16,7 +16,7 @@ collections:
     folder: "blog/_posts"   # matches your repo folder
     create: true
     extension: "md"
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Custom URL Slug", name: "slug", widget: "string", required: false}
