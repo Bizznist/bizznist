@@ -1,34 +1,24 @@
 title: BizzNist Blog
 description: IT, websites, SEO, and growth — by Reema Roy.
 url: "https://www.bizznist.com"
-baseurl: ""   # keep empty since you're serving at root
+baseurl: ""   # keep empty since Netlify deploys at root
 
 permalink: /blog/:title/
 
+# Plugins
 plugins:
+  - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-sitemap
 
-# Tell Jekyll where posts live
-collections:
-  posts:
-    output: true
-    permalink: /blog/:title/
-    # ⚠️ this is the key part:
-    source: blog/_posts
+# Pagination
+paginate: 6
+paginate_path: "/blog/page:num/"
 
-
+# Defaults
 defaults:
   - scope:
       path: ""
       type: posts
     values:
       layout: post
-
-plugins:
-  - jekyll-paginate
-  - jekyll-seo-tag
-  - jekyll-sitemap
-
-paginate: 6
-paginate_path: "/blog/page:num/"
