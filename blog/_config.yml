@@ -1,27 +1,22 @@
 title: BizzNist Blog
 description: IT, websites, SEO, and growth — by Reema Roy.
-baseurl: "/blog"
 url: "https://www.bizznist.com"
+baseurl: ""
 
-markdown: kramdown
-permalink: "/blog/:title/"
+permalink: /blog/:slug/
+
+collections:
+  posts:
+    output: true
+    permalink: /blog/:slug/
 
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-collections:
-  posts:
-    output: true
-    permalink: /blog/:title/
-
-
 defaults:
   - scope:
-      path: ""
-      type: "posts"
+      path: "blog/_posts"
+      type: posts
     values:
       layout: post
-      is_post: true
-
-uploads_dir: assets/uploads/blog
