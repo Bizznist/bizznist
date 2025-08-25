@@ -12,7 +12,7 @@ publish_mode: simple
 
 collections:
   - name: "posts"
-    label: "Posts"
+    label: "Blog"
     folder: "blog/_posts"   # make sure this matches your repo
     create: true
     extension: "md"
