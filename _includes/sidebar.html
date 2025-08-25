@@ -11,19 +11,21 @@
 
 
   <!-- Recent Posts Widget -->
-  <div class="recent-posts-widget widget-item">
-    <h3 class="widget-title">Recent Posts</h3>
-    {% for post in site.posts limit:5 %}
-    <div class="post-item">
-      {% if post.image %}
-      <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="flex-shrink-0">
-      {% endif %}
-      <div>
-        <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
-      </div>
+<div class="recent-posts-widget widget-item">
+  <h3 class="widget-title">Recent Posts</h3>
+  {% for post in site.posts limit:5 %}
+  <div class="post-item">
+    {% if post.thumbnail %}
+    <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="flex-shrink-0">
+    {% elsif post.image %}
+    <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="flex-shrink-0">
+    {% endif %}
+    <div>
+      <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
+</div>
 
 </div>
