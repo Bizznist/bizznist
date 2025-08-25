@@ -4,7 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>{{ page.title }} | {{ site.title }}</title>
+<title>{{ page.meta_title | default: page.title }} | {{ site.title }}</title>
+<meta name="description" content="{{ page.meta_description | default: site.description }}">
+<meta name="keywords" content="{{ page.meta_keywords | join: ', ' }}">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+{% seo %}
+
 
   <!-- SEO -->
   {% seo %}
