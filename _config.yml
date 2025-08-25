@@ -1,20 +1,20 @@
 title: BizzNist Blog
 description: IT, websites, SEO, and growth — by Reema Roy.
 url: "https://www.bizznist.com"
-baseurl: ""   # keep empty, since Netlify deploys at root
+baseurl: ""   # keep empty since you're serving at root
 
 permalink: /blog/:title/
 
-# Plugins
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-# Posts collection (custom path)
+# Tell Jekyll where posts live
 collections:
   posts:
     output: true
     permalink: /blog/:title/
+    # ⚠️ this is the key part:
     source: blog/_posts
 
 
