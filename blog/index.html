@@ -3,7 +3,6 @@ layout: blog
 title: Blog
 ---
 
-
 <!-- Page Title -->
 <div class="page-title">
   <div class="heading">
@@ -40,7 +39,11 @@ title: Blog
             <div class="col-12">
               <article>
 
-                {% if post.image %}
+                {% if post.thumbnail %}
+                <div class="post-img">
+                  <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="img-fluid">
+                </div>
+                {% elsif post.image %}
                 <div class="post-img">
                   <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="img-fluid">
                 </div>
@@ -111,8 +114,15 @@ title: Blog
 
 <style>
 .heading {
-    padding-top: 100px;
-    padding-bottom: 10px;
+  padding-top: 100px !important;
+  padding-bottom: 10px !important;
+}
+</style>
+
+<style>
+.heading {
+    padding-top: 100px !important;
+    padding-bottom: 10px !important;
 }
   
   </style>
