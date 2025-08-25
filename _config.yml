@@ -1,21 +1,21 @@
-title: BizzNist
+title: BizzNist Blog
 description: IT, websites, SEO, and growth — by Reema Roy.
-baseurl: "" # root domain
 url: "https://www.bizznist.com"
+baseurl: ""   # keep empty, since Netlify deploys at root
 
-markdown: kramdown
-permalink: "/blog/:title/"
+permalink: /blog/:title/
 
 # Plugins
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-# Posts setup
-posts:
+# Posts collection (custom path)
+collections:
+  posts:
     output: true
     permalink: /blog/:title/
-    directory: blog/_posts
+    source: blog/_posts
 
 
 defaults:
