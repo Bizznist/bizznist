@@ -18,13 +18,12 @@ collections:
     extension: "md"
     slug: "{{slug}}"   # CMS will auto-generate from Title, but we’ll also add a custom field
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Custom URL Slug", name: "custom_slug", widget: "string", required: false, hint: "Leave empty to auto-generate" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Author", name: "author", widget: "string", default: "Reema Roy" }
-      - { label: "Featured Image", name: "image", widget: "image", required: false }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
-      - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
-      - { label: "Meta Keywords", name: "meta_keywords", widget: "list", required: false }
-      
+  - {label: "Title", name: "title", widget: "string"}
+  - {label: "Custom URL Slug", name: "slug", widget: "string", required: false}
+  - {label: "Publish Date", name: "date", widget: "datetime"}
+  - {label: "Author", name: "author", widget: "string"}
+  - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+  - {label: "Body", name: "body", widget: "markdown"}
+  - {label: "Meta Title", name: "meta_title", widget: "string", required: false}
+  - {label: "Meta Description", name: "meta_description", widget: "text", required: false}
+  - {label: "Meta Keywords", name: "meta_keywords", widget: "list", required: false}
