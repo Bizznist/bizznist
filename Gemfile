@@ -5,3 +5,6 @@ gem "jekyll-seo-tag"
 gem "jekyll-sitemap"
 
 gem "jekyll-paginate"
+
+gem "faraday-retry"
+
