@@ -13,7 +13,7 @@ publish_mode: simple
 collections:
   - name: "posts"
     label: "Posts"
-    folder: "_posts"   # make sure this matches your repo
+    folder: "blog/_posts"   # make sure this matches your repo
     create: true
     extension: "md"
     slug: "{{slug}}"   # CMS will auto-generate from Title, but we’ll also add a custom field
