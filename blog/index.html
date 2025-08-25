@@ -1,168 +1,109 @@
 ---
-layout: default
+layout: blog
 title: Blog
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>{{ page.title }} - {{ site.title }}</title>
-  <meta name="description" content="{{ site.description }}">
-  <meta name="keywords" content="blog, {{ site.title }}">
-
-  <!-- Favicons -->
-  <link href="https://www.bizznist.com/assets/img/favicon.png" rel="icon">
-  <link href="https://www.bizznist.com/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="https://www.bizznist.com/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://www.bizznist.com/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://www.bizznist.com/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="https://www.bizznist.com/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="https://www.bizznist.com/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Main CSS File -->
-  <link href="https://www.bizznist.com/assets/css/main.css" rel="stylesheet">
-</head>
-
-<body class="blog-page">
-
-  {% include header.html %}
-
-  <main class="main">
-
-    <!-- Page Title -->
-    <div class="page-title">
-      <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>Latest Blogs</h1>
-              <p class="mb-0">Read the latest posts from our team, stories, and insights.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <nav class="breadcrumbs">
-        <div class="container">
-          <ol>
-            <li><a href="{{ '/' | relative_url }}">Home</a></li>
-            <li class="current">Blog</li>
-          </ol>
-        </div>
-      </nav>
-    </div><!-- End Page Title -->
-
+<!-- Page Title -->
+<div class="page-title">
+  <div class="heading">
     <div class="container">
-      <div class="row">
-
+      <div class="row d-flex justify-content-center text-center">
         <div class="col-lg-8">
-
-          <!-- Blog Posts Section -->
-          <section id="blog-posts" class="blog-posts section">
-            <div class="container">
-              <div class="row gy-4">
-
-                {% for post in site.posts %}
-                <div class="col-12">
-                  <article>
-
-                    {% if post.image %}
-                    <div class="post-img">
-                      <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="img-fluid">
-                    </div>
-                    {% endif %}
-
-                    <h2 class="title">
-                      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                    </h2>
-
-                    <div class="meta-top">
-                      <ul>
-                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> {{ post.author }}</li>
-                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i>
-                          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div class="content">
-                      <p>{{ post.excerpt | strip_html | truncate: 200 }}</p>
-                      <div class="read-more">
-                        <a href="{{ post.url | relative_url }}">Read More</a>
-                      </div>
-                    </div>
-
-                  </article>
-                </div>
-                {% endfor %}
-
-              </div>
-            </div>
-          </section>
-
-          <!-- Blog Pagination Section -->
-          <section id="blog-pagination" class="blog-pagination section">
-            <div class="container">
-              <div class="d-flex justify-content-center">
-                {% if paginator %}
-                <ul>
-                  {% if paginator.previous_page %}
-                  <li><a href="{{ paginator.previous_page_path }}"><i class="bi bi-chevron-left"></i></a></li>
-                  {% endif %}
-
-                  {% for page in (1..paginator.total_pages) %}
-                  <li>
-                    <a href="{{ paginator.page_path | replace: ':num', page }}" class="{% if page == paginator.page %}active{% endif %}">{{ page }}</a>
-                  </li>
-                  {% endfor %}
-
-                  {% if paginator.next_page %}
-                  <li><a href="{{ paginator.next_page_path }}"><i class="bi bi-chevron-right"></i></a></li>
-                  {% endif %}
-                </ul>
-                {% endif %}
-              </div>
-            </div>
-          </section>
-
+          <h1>Latest Blogs</h1>
+          <p class="mb-0">Read the latest posts from our team, stories, and insights.</p>
         </div>
-
-        <!-- Sidebar -->
-        <div class="col-lg-4 sidebar">
-          {% include sidebar.html %}
-        </div>
-
       </div>
     </div>
+  </div>
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="{{ '/' | relative_url }}">Home</a></li>
+        <li class="current">Blog</li>
+      </ol>
+    </div>
+  </nav>
+</div><!-- End Page Title -->
 
-  </main>
+<div class="container">
+  <div class="row">
 
-  {% include footer.html %}
+    <div class="col-lg-8">
 
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+      <!-- Blog Posts Section -->
+      <section id="blog-posts" class="blog-posts section">
+        <div class="container">
+          <div class="row gy-4">
 
-  <!-- Vendor JS Files -->
-  <script src="https://www.bizznist.com/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="https://www.bizznist.com/assets/vendor/php-email-form/validate.js"></script>
-  <script src="https://www.bizznist.com/assets/vendor/aos/aos.js"></script>
-  <script src="https://www.bizznist.com/assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="https://www.bizznist.com/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="https://www.bizznist.com/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="https://www.bizznist.com/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="https://www.bizznist.com/assets/vendor/swiper/swiper-bundle.min.js"></script>
+            {% for post in paginator.posts %}
+            <div class="col-12">
+              <article>
 
-  <!-- Main JS File -->
-  <script src="https://www.bizznist.com/assets/js/main.js"></script>
+                {% if post.image %}
+                <div class="post-img">
+                  <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="img-fluid">
+                </div>
+                {% endif %}
 
-</body>
-</html>
+                <h2 class="title">
+                  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </h2>
+
+                <div class="meta-top">
+                  <ul>
+                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> {{ post.author }}</li>
+                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i>
+                      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="content">
+                  <p>{{ post.excerpt | strip_html | truncate: 200 }}</p>
+                  <div class="read-more">
+                    <a href="{{ post.url | relative_url }}">Read More</a>
+                  </div>
+                </div>
+
+              </article>
+            </div>
+            {% endfor %}
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Blog Pagination Section -->
+      <section id="blog-pagination" class="blog-pagination section">
+        <div class="container">
+          <div class="d-flex justify-content-center">
+            {% if paginator.total_pages > 1 %}
+            <ul>
+              {% if paginator.previous_page %}
+              <li><a href="{{ paginator.previous_page_path }}"><i class="bi bi-chevron-left"></i></a></li>
+              {% endif %}
+
+              {% for page in (1..paginator.total_pages) %}
+              <li>
+                <a href="{{ paginator.page_path | replace: ':num', page }}" class="{% if page == paginator.page %}active{% endif %}">{{ page }}</a>
+              </li>
+              {% endfor %}
+
+              {% if paginator.next_page %}
+              <li><a href="{{ paginator.next_page_path }}"><i class="bi bi-chevron-right"></i></a></li>
+              {% endif %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4 sidebar">
+      {% include sidebar.html %}
+    </div>
+
+  </div>
+</div>
