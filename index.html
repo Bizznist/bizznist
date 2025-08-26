@@ -810,90 +810,28 @@
       <div class="container">
 
         <div class="row gy-5">
-
-          <div class="col-xl-4 col-md-6">
-            <div class="post-item position-relative h-100 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-
-              <div class="post-img position-relative overflow-hidden">
-                <img src="assets/img/blog/comscore-integration.png" class="img-fluid" alt="">
-              </div>
-
-              <div class="post-content d-flex flex-column">
-
-                <h3 class="post-title">ComScore Integration</h3>
-
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-person"></i> <span class="ps-2">GyaanSaar</span>
-                  </div>
-                </div>
-
-                <hr>
-
-                <a href="https://gyaansaar.bizznist.com/knowledge-base/functionality-tool-integration/comscore-integration" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-
-              </div>
-
+          {% for post in site.posts limit:3 %}
+          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.index0 | times: 100 }}">
+          <div class="post-item position-relative h-100">
+            <div class="post-img position-relative overflow-hidden">
+              <img src="{{ post.image }}" class="img-fluid" alt="">
             </div>
-          </div><!-- End post item -->
-
-          <div class="col-xl-4 col-md-6">
-            <div class="post-item position-relative h-100 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-
-              <div class="post-img position-relative overflow-hidden">
-                <img src="assets/img/blog/google-analytics.png" class="img-fluid" alt="">
+            <div class="post-content d-flex flex-column">
+              <h3 class="post-title">{{ post.title }}</h3>
+              <div class="meta d-flex align-items-center">
+                <i class="bi bi-person"></i> <span class="ps-2">{{ post.author }}</span>
               </div>
-
-              <div class="post-content d-flex flex-column">
-
-                <h3 class="post-title">Google Analytics</h3>
-
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-person"></i> <span class="ps-2">GyaanSaar</span>
-                  </div>
-                </div>
-
-                <hr>
-
-                <a href="https://gyaansaar.bizznist.com/knowledge-base/functionality-tool-integration/google-analytics" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-
-              </div>
-
+              <hr>
+              <a href="{{ post.url }}" class="readmore stretched-link">
+                <span>Read More</span><i class="bi bi-arrow-right"></i>
+              </a>
             </div>
-          </div><!-- End post item -->
-
-          <div class="col-xl-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-            <div class="post-item position-relative h-100">
-
-              <div class="post-img position-relative overflow-hidden">
-                <img src="assets/img/blog/creation-of-articles-wordpress.png" class="img-fluid" alt="">
-              </div>
-
-              <div class="post-content d-flex flex-column">
-
-                <h3 class="post-title">Creation of articles - WordPress</h3>
-
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-person"></i> <span class="ps-2">GyaanSaar</span>
-                  </div>
-                </div>
-
-                <hr>
-
-                <a href="https://gyaansaar.bizznist.com/knowledge-base/wordpress/creation-of-article" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-
-              </div>
-
-            </div>
-          </div><!-- End post item -->
-
+          </div>
         </div>
-
-      </div>
-
-    </section>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
