@@ -33,7 +33,7 @@ Let’s break it down into simple parts so you can understand how websites come 
 
 ## 1. Front-End (Client-Side) – The Face of Your Website
 
-![]()
+![Front-End (Client-Side) – The Face of Your Website](/assets/uploads/blog/front-end-client-side-–-the-face-of-your-website.png "Front-End (Client-Side) – The Face of Your Website")
 
 The front-end is everything you see on a website. From the layout and colors to the buttons you click, it’s all designed to create a smooth user experience.
 
@@ -55,6 +55,8 @@ The front-end is everything you see on a website. From the layout and colors to 
 *In short, the front-end is the “face” of your website—what your visitors see and interact with.*
 
 ## 2. Back-End (Server-Side) – The Engine of Your Website
+
+![Back-End (Server-Side) – The Engine of Your Website](/assets/uploads/blog/back-end-server-side-–-the-engine-of-your-website.png "Back-End (Server-Side) – The Engine of Your Website")
 
 While the front-end focuses on what users see, the back-end is what happens behind the scenes. It’s like the engine of a car—you don’t see it, but it powers everything.
 
