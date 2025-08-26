@@ -801,6 +801,9 @@
     <!-- Recent Posts Section -->
 <section id="recent-posts" class="recent-posts section">
 
+  <!-- Recent Posts Section -->
+<section id="recent-posts" class="recent-posts section">
+
   <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
     <h2>Recent Posts</h2>
@@ -808,37 +811,50 @@
   </div><!-- End Section Title -->
 
   <div class="container">
-    <div class="row gy-5">
+    <div class="row gy-4">
       {% for post in site.posts limit:3 %}
-      <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.index0 | times: 100 }}">
-        <div class="post-item position-relative h-100">
-          <div class="post-img position-relative overflow-hidden">
-            {% if post.thumbnail %}
-              <img src="{{ post.thumbnail | relative_url }}" class="img-fluid" alt="{{ post.title }}">
-            {% elsif post.image %}
-              <img src="{{ post.image | relative_url }}" class="img-fluid" alt="{{ post.title }}">
-            {% endif %}
+      <div class="col-lg-4 col-md-6">
+        <article class="post-item h-100">
+
+          {% if post.thumbnail %}
+          <div class="post-img">
+            <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="img-fluid">
           </div>
-          <div class="post-content d-flex flex-column">
-            <h3 class="post-title">{{ post.title }}</h3>
-            <div class="meta d-flex align-items-center">
-              <i class="bi bi-person"></i> <span class="ps-2">{{ post.author }}</span>
-              <i class="bi bi-clock ms-3"></i>
-              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
-            </div>
-            <p class="mt-2">{{ post.excerpt | strip_html | truncate: 120 }}</p>
-            <hr>
-            <a href="{{ post.url | relative_url }}" class="readmore stretched-link">
-              <span>Read More</span><i class="bi bi-arrow-right"></i>
-            </a>
+          {% elsif post.image %}
+          <div class="post-img">
+            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="img-fluid">
           </div>
-        </div>
+          {% endif %}
+
+          <h3 class="post-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </h3>
+
+          <div class="meta d-flex align-items-center">
+            <i class="bi bi-person"></i> <span class="ps-2">{{ post.author }}</span>
+            <i class="bi bi-clock ms-3"></i>
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+          </div>
+
+          <p class="mt-2">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+
+          <div class="read-more">
+            <a href="{{ post.url | relative_url }}">Read More</a>
+          </div>
+        </article>
       </div>
       {% endfor %}
     </div>
+
+    <!-- View All Button -->
+    <div class="text-center mt-4">
+      <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">View All Posts</a>
+    </div>
+
   </div>
 </section>
 <!-- End Recent Posts Section -->
+
 
     
 
