@@ -33,6 +33,6 @@ function includeTracking(file) {
 
 // Run includes when DOM is ready
 document.addEventListener("DOMContentLoaded", function () {
-  includeHTML();                    // auto-load all [data-include]
-  includeTracking("/tracking.html"); // optional tracking injection
+  includeHTML();                       // auto-load all [data-include]
+  includeTracking("tracking.html");    // optional: inject tracking.html into <head>
 });
