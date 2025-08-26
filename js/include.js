@@ -20,8 +20,7 @@ function includeTracking(file) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  includeHTML("header", "_includes/header.html");
-  includeHTML("footer", "_includes/footer.html");
+    includeHTML(); // will automatically load all [data-include]
   includeTracking("/tracking.html"); // <-- injects tracking code into <head>
 });
 
