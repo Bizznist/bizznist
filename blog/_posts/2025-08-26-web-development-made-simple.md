@@ -33,6 +33,8 @@ Let’s break it down into simple parts so you can understand how websites come 
 
 ## 1. Front-End (Client-Side) – The Face of Your Website
 
+![]()
+
 The front-end is everything you see on a website. From the layout and colors to the buttons you click, it’s all designed to create a smooth user experience.
 
 #### **Key Languages:**
@@ -83,6 +85,8 @@ Think of a website as a team where every part has its role:
 When combined, these create a complete, dynamic, and interactive web application.
 
 ## Pro Tip for Beginners
+
+![](/assets/uploads/blog/pro-tip-for-beginners.png)
 
 If you’re new to web development, don’t get overwhelmed. Start step by step:
 
