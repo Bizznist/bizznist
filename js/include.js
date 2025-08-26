@@ -24,3 +24,4 @@ document.addEventListener("DOMContentLoaded", function () {
   includeHTML("footer", "_includes/footer.html");
   includeTracking("/tracking.html"); // <-- injects tracking code into <head>
 });
+
