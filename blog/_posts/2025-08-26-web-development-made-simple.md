@@ -86,7 +86,7 @@ When combined, these create a complete, dynamic, and interactive web application
 
 ## Pro Tip for Beginners
 
-![](/assets/uploads/blog/pro-tip-for-beginners.png)
+![Pro Tip for Beginners](/assets/uploads/blog/pro-tip-for-beginners.png "Pro Tip for Beginners")
 
 If you’re new to web development, don’t get overwhelmed. Start step by step:
 
