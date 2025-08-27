@@ -806,13 +806,8 @@ title: Home
     <!-- Recent Posts Section -->
 <section id="recent-posts" class="recent-posts section">
 
-  ---
-layout: default
-title: Home
----
-
 <!-- Recent Posts Section -->
-<section id="recent-posts" class="recent-posts section">
+  <section id="recent-posts" class="recent-posts section">
 
   <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
@@ -828,16 +823,20 @@ title: Home
 
           {% if post.thumbnail %}
           <div class="post-img">
-            <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="img-fluid">
+            <a href="{{ post.url | relative_url }}">
+              <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="img-fluid">
+            </a>
           </div>
           {% elsif post.image %}
           <div class="post-img">
-            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="img-fluid">
+            <a href="{{ post.url | relative_url }}">
+              <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="img-fluid">
+            </a>
           </div>
           {% endif %}
 
           <h3 class="post-title">
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            <a href="{{ post.url | relative_url }}">{{ post.title | truncate: 70 }}</a>
           </h3>
 
           <div class="meta d-flex align-items-center">
@@ -863,9 +862,6 @@ title: Home
 
   </div>
 </section>
-<!-- End Recent Posts Section -->
-
-
 
     
 
@@ -986,3 +982,37 @@ title: Home
 </body>
 
 </html>
+<style>
+  .post-img {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.post-img img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.4s ease;
+}
+
+.post-img:hover img {
+  transform: scale(1.1);
+}
+
+.post-title a {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* ~70 chars */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-item p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* ~120 chars */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+  </style>
