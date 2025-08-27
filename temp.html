@@ -983,23 +983,24 @@ title: Home
 
 </html>
 <style>
-  .post-img {
+  /* Recent Posts Section Scoped CSS */
+#recent-posts .post-img {
   position: relative;
   overflow: hidden;
   border-radius: 8px;
 }
 
-.post-img img {
+#recent-posts .post-img img {
   width: 100%;
   height: auto;
   transition: transform 0.4s ease;
 }
 
-.post-img:hover img {
+#recent-posts .post-img:hover img {
   transform: scale(1.1);
 }
 
-.post-title a {
+#recent-posts .post-title a {
   display: -webkit-box;
   -webkit-line-clamp: 2; /* ~70 chars */
   -webkit-box-orient: vertical;
@@ -1007,12 +1008,22 @@ title: Home
   text-overflow: ellipsis;
 }
 
-.post-item p {
+#recent-posts .post-item p {
   display: -webkit-box;
   -webkit-line-clamp: 3; /* ~120 chars */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Mobile tap zoom (optional) */
+@media (hover: none) {
+  #recent-posts .post-img img {
+    transition: transform 0.3s ease;
+  }
+  #recent-posts .post-img:active img {
+    transform: scale(1.05);
+  }
 }
 
   </style>
