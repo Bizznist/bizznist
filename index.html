@@ -817,14 +817,22 @@ title: Home
     <div class="row gy-4">
       {% for post in site.posts limit:3 %}
       <div class="col-lg-4 col-md-6">
-        <article class="post-item h-100">
+        <article class="post-item h-100" style="padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;">
 
           {% if post.thumbnail %}
-          <div class="post-img">
+          <div class="post-img" style="
+                position: relative;
+                overflow: hidden;
+                border-radius: 13px;
+                ">
             <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="img-fluid">
           </div>
           {% elsif post.image %}
-          <div class="post-img">
+          <div class="post-img" style="
+                position: relative;
+                overflow: hidden;
+                border-radius: 13px;
+                ">
             <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="img-fluid">
           </div>
           {% endif %}
