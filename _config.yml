@@ -32,3 +32,13 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-paginate
+
+# Exclude files/folders from build and sitemap
+exclude:
+  - admin/
+  - blog/admin/
+  - footer.html
+  - header.html
+  - portfolio-details.html
+  - starter-page.html
+  - tracking.html
