@@ -9,6 +9,10 @@ Disallow: /header.html
 Disallow: /portfolio-details.html
 Disallow: /starter-page.html
 Disallow: /tracking.html
+Disallow: /service-details.html
+Disallow: /temp
+Disallow: /temp.html
+
 
 # Declare sitemap
 Sitemap: https://www.bizznist.com/sitemap.xml
