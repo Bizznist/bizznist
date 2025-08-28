@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /ads.txt
-Disallow: /*.html$
-User-agent: *
+
+# Block unwanted pages
 Disallow: /admin/
 Disallow: /blog/admin/
 Disallow: /footer.html
@@ -10,5 +10,5 @@ Disallow: /portfolio-details.html
 Disallow: /starter-page.html
 Disallow: /tracking.html
 
+# Declare sitemap
 Sitemap: https://www.bizznist.com/sitemap.xml
-https://www.bizznist.com/feed.xml
