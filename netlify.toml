@@ -1,9 +1,3 @@
----
-layout: default
-sitemap: false
-robots: noindex
----
-
 [build]
   command = "bundle exec jekyll build"
   publish = "_site"
