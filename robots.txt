@@ -1,5 +1,14 @@
 User-agent: *
 Allow: /ads.txt
 Disallow: /*.html$
+User-agent: *
+Disallow: /admin/
+Disallow: /blog/admin/
+Disallow: /footer.html
+Disallow: /header.html
+Disallow: /portfolio-details.html
+Disallow: /starter-page.html
+Disallow: /tracking.html
 
 Sitemap: https://www.bizznist.com/sitemap.xml
+https://www.bizznist.com/feed.xml
