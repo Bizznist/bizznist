@@ -29,3 +29,4 @@ url: "https://www.bizznist.com"
 baseurl: ""                  
 plugins:
   - jekyll-sitemap
+  - jekyll-feed
