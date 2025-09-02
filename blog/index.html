@@ -81,8 +81,7 @@ title: Blog
             <i class="bi bi-clock ms-3"></i>
             <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
           </div>
-          <p class="mt-2">Introduction
-            </p>
+          <p class="mt-2">{{ post.excerpt | strip_html | truncate: 120 }}</p>
 
           <div class="read-more">
             <a href="{{ post.url | relative_url }}">Read More</a>
