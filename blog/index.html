@@ -127,3 +127,68 @@ title: Blog
 }
   
   </style>
+
+
+<!-- Recent Posts Section -->
+<section id="recent-posts" class="recent-posts section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Recent Posts</h2>
+    <p>Resource Center</p>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+    <div class="row gy-4">
+      {% for post in site.posts limit:3 %}
+      <div class="col-lg-4 col-md-6">
+        <article class="post-item h-100" style="padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;">
+
+          {% if post.thumbnail %}
+          <div class="post-img" style="
+                position: relative;
+                overflow: hidden;
+                border-radius: 13px;
+                height: 219px;
+                width: 100%;
+                ">
+            <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          {% elsif post.image %}
+          <div class="post-img" style="
+                position: relative;
+                overflow: hidden;
+                border-radius: 13px;
+                ">
+            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="img-fluid">
+          </div>
+          {% endif %}
+
+          <h3 class="post-title" style="margin-top: 10px;">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </h3>
+
+          <div class="meta d-flex align-items-center">
+            <i class="bi bi-person"></i> <span class="ps-2">{{ post.author }}</span>
+            <i class="bi bi-clock ms-3"></i>
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+          </div>
+
+          <p class="mt-2">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+
+          <div class="read-more">
+            <a href="{{ post.url | relative_url }}">Read More</a>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- View All Button -->
+    <div class="text-center mt-4">
+      <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">View All Posts</a>
+    </div>
+
+  </div>
+</section>
+<!-- End Recent Posts Section -->
