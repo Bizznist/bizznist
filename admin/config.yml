@@ -2,7 +2,6 @@ backend:
   name: git-gateway
   branch: main   # or the branch your site deploys from
 
-
 site_url: https://bizznist-blogs.netlify.app
 display_url: https://bizznist-blogs.netlify.app
 
@@ -10,6 +9,29 @@ media_folder: "assets/uploads/blog"   # where images get stored in your repo
 public_folder: "/assets/uploads/blog" # how images are referenced on the site
 
 publish_mode: simple
+
+# Enable custom editor settings
+editor:
+  preview: true
+  # Show toolbar buttons
+  buttons:
+    - bold
+    - italic
+    - link
+    - bulleted-list
+    - numbered-list
+    - quote
+    - code
+  # Add custom components like tables
+  components:
+    - label: "Table"
+      id: "table"
+      fields:
+        - { label: "Table Markdown", name: "body", widget: "text" }
+      pattern: /^(\|.+\|)+$/s
+      fromBlock: (match) => match[0]
+      toBlock: (obj) => obj.body
+      toPreview: (obj) => `<div style="overflow-x:auto;"><pre>${obj.body}</pre></div>`
 
 collections:
   - name: "posts"
