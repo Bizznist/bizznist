@@ -11,7 +11,59 @@
     <script src="https://unpkg.com/decap-cms@^3.8.3/dist/decap-cms.js"></script>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-    <!-- Load custom widgets -->
-    <script src="/admin/table-widget.js"></script>
+    <script>
+      // Custom Editor Component for Table
+      CMS.registerEditorComponent({
+        id: "table",
+        label: "Table",
+        fields: [
+          {
+            name: "rows",
+            label: "Rows",
+            widget: "list",
+            fields: [
+              {
+                name: "columns",
+                label: "Columns",
+                widget: "list",
+                field: { name: "cell", label: "Cell", widget: "string" }
+              }
+            ]
+          }
+        ],
+        pattern: /^<table>([\s\S]*?)<\/table>$/,
+        fromBlock: function(match) {
+          return { rows: [] }; // Start empty
+        },
+        toBlock: function(obj) {
+          if (!obj || !obj.rows) return "<table></table>";
+          return (
+            "<table border='1' style='border-collapse:collapse;width:100%'>" +
+            obj.rows
+              .map(row =>
+                "<tr>" +
+                row.columns.map(col => `<td style="padding:8px">${col.cell}</td>`).join("") +
+                "</tr>"
+              )
+              .join("") +
+            "</table>"
+          );
+        },
+        toPreview: function(obj) {
+          if (!obj || !obj.rows) return "<table></table>";
+          return (
+            "<table border='1' style='border-collapse:collapse;width:100%'>" +
+            obj.rows
+              .map(row =>
+                "<tr>" +
+                row.columns.map(col => `<td style="padding:8px">${col.cell}</td>`).join("") +
+                "</tr>"
+              )
+              .join("") +
+            "</table>"
+          );
+        }
+      });
+    </script>
   </body>
 </html>
