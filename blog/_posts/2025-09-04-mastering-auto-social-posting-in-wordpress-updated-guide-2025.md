@@ -56,43 +56,51 @@ Character Limit: Social message autoposts are capped at 255 characters for cross
 Facebook Page Connections: Jetpack can retrieve up to 25 Facebook pages during setup. Per site, up to 45 shared Facebook connections are allowed, and up to 15 per user. 
 
 Summary Table: Jetpack Social (2025 Updates)
+| Feature              | Status / Notes                                    |
+|----------------------|---------------------------------------------------|
+| Unlimited Sharing    | Yes — Jetpack Social (2025 update)                |
+| Platform Support     | Facebook, Instagram, LinkedIn, Threads, TikTok    |
+| Visual Tools         | Social Image Generator + Custom Branding          |
+| Scheduling           | Reshare & schedule old/new posts                  |
 
+
+\| Feature              | Status / Notes                                    |
+
+\|----------------------|---------------------------------------------------|
+
+\| Unlimited Sharing    | Yes — Jetpack Social (2025 update)                |
+
+\| Platform Support     | Facebook, Instagram, LinkedIn, Threads, TikTok    |
+
+\| Visual Tools         | Social Image Generator + Custom Branding          |
+
+\| Scheduling           | Reshare & schedule old/new posts                  |
 
 
 
 Feature
 Status / Notes
 
-
-
-
 Unlimited Sharing
 Yes — free and paid users alike ([Jetpack](https://jetpack.com/resources/jetpack-social-unlimited-sharing-threads-support-and-more/?utm_source=chatgpt.com))
-
 
 Platform Support
 Extensive—including TikTok (2025 update) ([Enterprise WordPress Development Company](https://www.wpwebelite.com/blog/5-best-wordpress-plugins-for-social-media-auto-posting/?utm_source=chatgpt.com))
 
-
 Visual Tools
 Social Image Generator + custom uploads ([Jetpack](https://jetpack.com/social/?utm_source=chatgpt.com))
-
 
 Re-share / Scheduling
 Fully supported ([Jetpack](https://jetpack.com/resources/automate-social-media-sharing-wordpress/?utm_source=chatgpt.com))
 
-
 Analytics
 Basic built-in (full site analytics via Jetpack suite) ([Enterprise WordPress Development Company](https://www.wpwebelite.com/blog/5-best-wordpress-plugins-for-social-media-auto-posting/?utm_source=chatgpt.com))
-
 
 Limits & Recommendations
 Posting caps suggested; 255-character limit ([Jetpack](https://jetpack.com/jetpack_support_category/social/?utm_source=chatgpt.com), [WordPress.org](https://wordpress.org/support/topic/question-about-character-limit-in-autoposting/?utm_source=chatgpt.com))
 
-
 Facebook Connections
 Up to 25 pages retrievable; 15 per user; 45 shared per site ([Jetpack](https://jetpack.com/support/jetpack-social/facebook/?utm_source=chatgpt.com))
-
 
 3. Jetpack Social vs. Other Plugins
 
