@@ -54,24 +54,7 @@ Character Limit: Social message autoposts are capped at 255 characters for cross
 Facebook Page Connections: Jetpack can retrieve up to 25 Facebook pages during setup. Per site, up to 45 shared Facebook connections are allowed, and up to 15 per user. 
 
 Summary Table: Jetpack Social (2025 Updates)
-| Feature              | Status / Notes                                    |
-|----------------------|---------------------------------------------------|
-| Unlimited Sharing    | Yes — Jetpack Social (2025 update)                |
-| Platform Support     | Facebook, Instagram, LinkedIn, Threads, TikTok    |
-| Visual Tools         | Social Image Generator + Custom Branding          |
-| Scheduling           | Reshare & schedule old/new posts                  |
 
-\| Feature              | Status / Notes                                    |
-
-\|----------------------|---------------------------------------------------|
-
-\| Unlimited Sharing    | Yes — Jetpack Social (2025 update)                |
-
-\| Platform Support     | Facebook, Instagram, LinkedIn, Threads, TikTok    |
-
-\| Visual Tools         | Social Image Generator + Custom Branding          |
-
-\| Scheduling           | Reshare & schedule old/new posts                  |
 
 Feature
 Status / Notes
