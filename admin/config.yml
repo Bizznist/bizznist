@@ -1,9 +1,7 @@
 backend:
   name: git-gateway
-  branch: main   # or master
+  branch: main   # or the branch your site deploys from
 
-  identity_url: https://bizznist-blogs.netlify.app/.netlify/identity
-  gateway_url: https://bizznist-blogs.netlify.app/.netlify/git
 
 site_url: https://bizznist-blogs.netlify.app
 display_url: https://bizznist-blogs.netlify.app
@@ -13,32 +11,21 @@ public_folder: "/assets/uploads/blog" # how images are referenced on the site
 
 publish_mode: simple
 
-editor:
-  preview: true
-  buttons:
-    - bold
-    - italic
-    - link
-    - bulleted-list
-    - numbered-list
-    - quote
-    - code
-
 collections:
   - name: "posts"
     label: "Blog"
     folder: "blog/_posts"
     create: true
     extension: "md"
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"   # filename format
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Author", name: "author", widget: "string" }
-      - { label: "Featured Image", name: "thumbnail", widget: "image", required: false }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Custom URL Slug", name: "slug", widget: "string" }
-      - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
-      - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
-      - { label: "Meta Keywords", name: "meta_keywords", widget: "list", required: false }
-      - { label: "Table", name: "table", widget: "table" }   # uses custom widget
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Custom URL Slug", name: "slug", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Author", name: "author", widget: "string"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Meta Title", name: "meta_title", widget: "string", required: false}
+      - {label: "Meta Description", name: "meta_description", widget: "text", required: false}
+      - {label: "Meta Keywords", name: "meta_keywords", widget: "list", required: false}
+
