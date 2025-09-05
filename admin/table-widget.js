@@ -16,7 +16,7 @@
       .map(
         (r) =>
           "<tr>" +
-          r.map((c) => `<td style="padding:6px;border:1px solid #ccc;">${escapeHtml(c)}</td>`).join("") +
+          r.map((c) => `<td style="padding:6px;border:1px solid #ccc;">${c}</td>`).join("") +
           "</tr>"
       )
       .join("");
@@ -33,14 +33,8 @@
         const inner = cellHtml
           .replace(/<td[^>]*>/i, "")
           .replace(/<\/td>/i, "")
-          .replace(/<br\s*\/?>/gi, "\n")
-          .replace(/&nbsp;/g, " ")
-          .replace(/&lt;/g, "<")
-          .replace(/&gt;/g, ">")
-          .replace(/&amp;/g, "&")
-          .replace(/&quot;/g, '"')
-          .replace(/&#039;/g, "'");
-        cells.push(inner.trim());
+          .trim();
+        cells.push(inner);
       });
       rows.push(cells.length ? cells : [""]);
     });
@@ -49,7 +43,7 @@
 
   const TableControl = createClass({
     getInitialState: function () {
-      return { rows: this.props.value && this.props.value.length ? this.props.value : [[""]] };
+      return { rows: this.props.value && this.props.value.length ? this.props.value : [[""]], activeCell: null };
     },
 
     update(rows) {
@@ -59,7 +53,7 @@
 
     handleChange: function (r, c, e) {
       const rows = this.state.rows.map((row) => row.slice());
-      rows[r][c] = e.target.value;
+      rows[r][c] = e.target.innerHTML; // store HTML with bold/italic tags
       this.update(rows);
     },
 
@@ -74,12 +68,37 @@
       this.update(rows);
     },
 
+    formatText: function (command) {
+      if (this.state.activeCell) {
+        document.execCommand(command, false, null);
+        const { r, c } = this.state.activeCell;
+        const rows = this.state.rows.map((row) => row.slice());
+        rows[r][c] = this.state.activeCell.el.innerHTML;
+        this.update(rows);
+      }
+    },
+
     render: function () {
       const { rows } = this.state;
 
       return h(
         "div",
         {},
+        // Formatting toolbar
+        h(
+          "div",
+          { style: { marginBottom: "8px" } },
+          h(
+            "button",
+            { type: "button", onClick: () => this.formatText("bold") },
+            "B"
+          ),
+          h(
+            "button",
+            { type: "button", style: { marginLeft: "6px" }, onClick: () => this.formatText("italic") },
+            "I"
+          )
+        ),
         h(
           "table",
           { style: { borderCollapse: "collapse", width: "100%" } },
@@ -91,14 +110,13 @@
                 "tr",
                 { key: rIdx },
                 row.map((cell, cIdx) =>
-                  h(
-                    "td",
-                    { key: cIdx, style: { border: "1px solid #ccc", padding: "0" } },
-                    h("input", {
-                      type: "text",
-                      value: cell,
-                      onChange: (e) => this.handleChange(rIdx, cIdx, e),
-                      style: { width: "100%", padding: "6px", border: "none", outline: "none" },
+                  h("td", { key: cIdx, style: { border: "1px solid #ccc", padding: "0" } },
+                    h("div", {
+                      contentEditable: true,
+                      dangerouslySetInnerHTML: { __html: cell },
+                      onInput: (e) => this.handleChange(rIdx, cIdx, e),
+                      onFocus: (e) => this.setState({ activeCell: { r: rIdx, c: cIdx, el: e.target } }),
+                      style: { minHeight: "40px", padding: "6px", outline: "none" }
                     })
                   )
                 )
