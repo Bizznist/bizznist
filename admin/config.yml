@@ -1,6 +1,7 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: main   # or master
+
   identity_url: https://bizznist-blogs.netlify.app/.netlify/identity
   gateway_url: https://bizznist-blogs.netlify.app/.netlify/git
 
