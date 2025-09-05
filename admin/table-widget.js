@@ -1,111 +1,160 @@
 /* global CMS, createClass, h */
 
-const TableControl = createClass({
-  getInitialState: function () {
-    const value = this.props.value || [[""]];
-    return { rows: value };
-  },
+(function () {
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
 
-  update(rows) {
-    this.setState({ rows });
-    this.props.onChange(rows);
-  },
+  function toHtmlTable(rows) {
+    const safeRows = rows && rows.length ? rows : [[""]];
+    const htmlRows = safeRows
+      .map(
+        (r) =>
+          "<tr>" +
+          r.map((c) => `<td style="padding:6px;border:1px solid #ccc;">${c}</td>`).join("") +
+          "</tr>"
+      )
+      .join("");
+    return `<table data-ncms-table="1" style="border-collapse:collapse;width:100%">${htmlRows}</table>`;
+  }
 
-  handleChange: function (row, col, e) {
-    const rows = this.state.rows.slice();
-    rows[row][col] = e.target.value;
-    this.update(rows);
-  },
+  function fromHtmlTable(html) {
+    const rows = [];
+    const rowMatches = html.match(/<tr[\s\S]*?<\/tr>/gi) || [];
+    rowMatches.forEach((rowHtml) => {
+      const cells = [];
+      const cellMatches = rowHtml.match(/<td[^>]*>([\s\S]*?)<\/td>/gi) || [];
+      cellMatches.forEach((cellHtml) => {
+        const inner = cellHtml
+          .replace(/<td[^>]*>/i, "")
+          .replace(/<\/td>/i, "")
+          .trim();
+        cells.push(inner);
+      });
+      rows.push(cells.length ? cells : [""]);
+    });
+    return rows.length ? rows : [[""]];
+  }
 
-  addRow: function () {
-    const rows = this.state.rows.concat([
-      [...Array(this.state.rows[0].length).fill("")]
-    ]);
-    this.update(rows);
-  },
+  const TableControl = createClass({
+    getInitialState: function () {
+      return { rows: this.props.value && this.props.value.length ? this.props.value : [[""]], activeCell: null };
+    },
 
-  addColumn: function () {
-    const rows = this.state.rows.map(r => r.concat([""]));
-    this.update(rows);
-  },
+    update(rows) {
+      this.setState({ rows });
+      this.props.onChange(rows);
+    },
 
-  makeBold: function () {
-    if (this.lastEdited) {
-      this.lastEdited.value += "**bold**"; // markdown-style
-      this.handleChange(this.lastRow, this.lastCol, { target: this.lastEdited });
-    }
-  },
+    handleChange: function (r, c, e) {
+      const rows = this.state.rows.map((row) => row.slice());
+      rows[r][c] = e.target.innerHTML; // store HTML with bold/italic tags
+      this.update(rows);
+    },
 
-  makeItalic: function () {
-    if (this.lastEdited) {
-      this.lastEdited.value += "*italic*"; // markdown-style
-      this.handleChange(this.lastRow, this.lastCol, { target: this.lastEdited });
-    }
-  },
+    addRow: function () {
+      const cols = this.state.rows[0] ? this.state.rows[0].length : 1;
+      const rows = this.state.rows.concat([Array(cols).fill("")]);
+      this.update(rows);
+    },
 
-  render: function () {
-    return h("div", {},
-      // Toolbar
-      h("div", { style: { marginBottom: "10px" } },
-        h("button", { type: "button", onClick: this.makeBold }, "B"),
-        h("button", { type: "button", style: { marginLeft: "6px" }, onClick: this.makeItalic }, "I")
-      ),
+    addCol: function () {
+      const rows = this.state.rows.map((row) => row.concat([""]));
+      this.update(rows);
+    },
 
-      h("table", { border: 1, style: { borderCollapse: "collapse", width: "100%" } },
-        h("tbody", {},
-          this.state.rows.map((r, row) =>
-            h("tr", { key: row },
-              r.map((c, col) =>
-                h("td", { key: col, style: { padding: "6px", verticalAlign: "top", width: "200px", height: "80px" } },
-                  h("textarea", {
-                    value: c,
-                    rows: 3,
-                    style: {
-                      width: "100%",
-                      height: "80px",
-                      resize: "both",
-                      boxSizing: "border-box"
-                    },
-                    onChange: this.handleChange.bind(this, row, col),
-                    onFocus: (e) => {
-                      this.lastEdited = e.target;
-                      this.lastRow = row;
-                      this.lastCol = col;
-                    }
-                  })
+    formatText: function (command) {
+      if (this.state.activeCell) {
+        document.execCommand(command, false, null);
+        const { r, c } = this.state.activeCell;
+        const rows = this.state.rows.map((row) => row.slice());
+        rows[r][c] = this.state.activeCell.el.innerHTML;
+        this.update(rows);
+      }
+    },
+
+    render: function () {
+      const { rows } = this.state;
+
+      return h(
+        "div",
+        {},
+        // Formatting toolbar
+        h(
+          "div",
+          { style: { marginBottom: "8px" } },
+          h(
+            "button",
+            { type: "button", onClick: () => this.formatText("bold") },
+            "B"
+          ),
+          h(
+            "button",
+            { type: "button", style: { marginLeft: "6px" }, onClick: () => this.formatText("italic") },
+            "I"
+          )
+        ),
+        h(
+          "table",
+          { style: { borderCollapse: "collapse", width: "100%" } },
+          h(
+            "tbody",
+            {},
+            rows.map((row, rIdx) =>
+              h(
+                "tr",
+                { key: rIdx },
+                row.map((cell, cIdx) =>
+                  h("td", { key: cIdx, style: { border: "1px solid #ccc", padding: "0" } },
+                    h("div", {
+                      contentEditable: true,
+                      dangerouslySetInnerHTML: { __html: cell },
+                      onInput: (e) => this.handleChange(rIdx, cIdx, e),
+                      onFocus: (e) => this.setState({ activeCell: { r: rIdx, c: cIdx, el: e.target } }),
+                      style: { minHeight: "40px", padding: "6px", outline: "none" }
+                    })
+                  )
                 )
               )
             )
           )
+        ),
+        h(
+          "div",
+          { style: { marginTop: "10px" } },
+          h("button", { type: "button", onClick: this.addRow }, "➕ Add Row"),
+          h("button", { type: "button", onClick: this.addCol, style: { marginLeft: "8px" } }, "➕ Add Column")
         )
-      ),
+      );
+    },
+  });
 
-      h("div", { style: { marginTop: "10px" } },
-        h("button", { type: "button", onClick: this.addRow }, "➕ Add Row"),
-        h("button", { type: "button", onClick: this.addColumn, style: { marginLeft: "8px" } }, "➕ Add Column")
-      )
-    );
-  }
-});
+  const TablePreview = createClass({
+    render: function () {
+      return h("div", { dangerouslySetInnerHTML: { __html: toHtmlTable(this.props.value || [[""]]) } });
+    },
+  });
 
-const TablePreview = createClass({
-  render: function () {
-    const rows = this.props.value || [];
-    if (!rows.length) return h("div", {}, "No table data");
-    return h("table", { border: 1, style: { borderCollapse: "collapse", width: "100%" } },
-      h("tbody", {},
-        rows.map((r, row) =>
-          h("tr", { key: row },
-            r.map((c, col) =>
-              h("td", { key: col, style: { padding: "6px", width: "200px", height: "80px", verticalAlign: "top" } },
-                c
-              )
-            )
-          )
-        )
-      )
-    );
-  }
-});
+  CMS.registerWidget("tablegrid", TableControl, TablePreview);
 
-CMS.registerWidget("table", TableControl, TablePreview);
+  CMS.registerEditorComponent({
+    id: "table",
+    label: "Table",
+    fields: [{ name: "rows", label: "Rows", widget: "tablegrid" }],
+    pattern: /<table[^>]*data-ncms-table="1"[^>]*>[\s\S]*?<\/table>/i,
+    fromBlock: function (match) {
+      return { rows: fromHtmlTable(match[0]) };
+    },
+    toBlock: function (obj) {
+      return toHtmlTable(obj.rows || [[""]]);
+    },
+    toPreview: function (obj) {
+      return toHtmlTable(obj.rows || [[""]]);
+    },
+  });
+})();
