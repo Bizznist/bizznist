@@ -30,18 +30,14 @@ If your website is built using a JavaScript framework or follows a Single‑Page
 
 Chrome is addressing this blind spot through the Soft Navigations API available in Chrome 139. When enabled, this feature:
 
-* Detects 
+* Detects **"soft"**
 
-  **"soft"**
+  *  navigations where the URL changes and DOM re‑renders occur.
+  * Triggers performance measurement for Largest Contentful Paint (LCP) after the soft navigation.
+* Adds **navigationId**
 
-   navigations where the URL changes and DOM re‑renders occur.
-* Triggers performance measurement for Largest Contentful Paint (LCP) after the soft navigation.
-* Adds 
-
-  **navigationId**
-
-   so tracking systems can link UX metrics to each navigation event.
-* Extends CLS and INP tracking across soft navigations to ensure responsiveness and stability are measured per interaction—even within SPAs.
+  * so tracking systems can link UX metrics to each navigation event.
+  * Extends CLS and INP tracking across soft navigations to ensure responsiveness and stability are measured per interaction—even within SPAs.
 
 ### SEO & UX Impact
 
@@ -51,39 +47,19 @@ Chrome is addressing this blind spot through the Soft Navigations API available 
 
 ### How You Can Test It
 
-* In 
+* In **Chrome 139**, enable flag: **chrome://flags/#soft-navigation-heuristics**
 
-  **Chrome 139**
+  * Join the origin trial by embedding a meta‑tag or HTTP header token on your site.
+* Optionally, enable **Advanced Paint Attribution** for deeper measurement fidelity.
 
-  , enable flag: 
+  * Ensure your analytics or RUM provider reads new fields like **navigationId** and **interaction-contentful-paint**
+* Document edge cases: auto-redirects, **replaceState()**
 
-  **chrome://flags/#soft-navigation-heuristics.**
-* Join the origin trial by embedding a meta‑tag or HTTP header token on your site.
-* Optionally, enable 
-
-  **Advanced Paint Attribution**
-
-   for deeper measurement fidelity.
-* Ensure your analytics or RUM provider reads new fields like 
-
-  **navigationId**
-
-  and 
-
-  **interaction-contentful-paint**
-* Document edge cases: auto-redirects,
-
-  **replaceState()**
-
-  usage, or custom navigational logic may not be caught—test thoroughly using real flows.
+  * usage, or custom navigational logic may not be caught—test thoroughly using real flows.
 
 ### Caveats to Consider
 
-* It's 
-
-  **experimental**
-
-  —Chrome only, and only versions 139+.
+* It's **experimental**—Chrome only, and only versions 139+.
 * Other browsers (Safari, Firefox) won’t support this yet.
 * Your performance tooling must adapt to ingest new metrics; older dashboards might ignore them
 
