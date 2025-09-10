@@ -21,7 +21,7 @@ meta_keywords:
 ---
 ## Introduction
 
-If you’re exploring options to scale your digital presence, you’ve likely heard about BlinkCMS *(Previously Hocalwire)* — a powerful content management system designed for performance-driven brands.
+If you’re exploring options to scale your digital presence, you’ve likely heard about [BlinkCMS](https://www.blinkcms.ai/) *(Previously Hocalwire)* — a powerful content management system designed for performance-driven brands.
 
 But with WordPress already a popular choice, you may ask:
 
