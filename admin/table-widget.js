@@ -1,5 +1,4 @@
 /* global CMS, createClass, h */
-
 (function () {
   function escapeHtml(str) {
     return String(str)
