@@ -16,8 +16,13 @@
       .map(
         (r) =>
           "<tr>" +
-          r.map((c) => `<td style="padding:6px;border:1px solid #ccc;">${c}</td>`).join("") +
-          "</tr>`
+          r
+            .map(
+              (c) =>
+                `<td style="padding:6px;border:1px solid #ccc;">${c}</td>`
+            )
+            .join("") +
+          "</tr>"
       )
       .join("");
     return `<table data-ncms-table="1" style="border-collapse:collapse;width:100%">${htmlRows}</table>`;
@@ -56,7 +61,7 @@
 
     handleChange: function (r, c, e) {
       const rows = this.state.rows.map((row) => row.slice());
-      rows[r][c] = e.target.innerHTML; // ✅ store HTML so formatting works
+      rows[r][c] = e.target.innerHTML; // keep HTML so formatting is preserved
       this.update(rows);
     },
 
@@ -94,7 +99,11 @@
           h("button", { type: "button", onClick: () => this.formatText("bold") }, "B"),
           h(
             "button",
-            { type: "button", style: { marginLeft: "6px" }, onClick: () => this.formatText("italic") },
+            {
+              type: "button",
+              style: { marginLeft: "6px" },
+              onClick: () => this.formatText("italic"),
+            },
             "I"
           )
         ),
@@ -109,15 +118,27 @@
                 "tr",
                 { key: rIdx },
                 row.map((cell, cIdx) =>
-                  h("td", { key: cIdx, style: { border: "1px solid #ccc", padding: "0" } },
+                  h(
+                    "td",
+                    {
+                      key: cIdx,
+                      style: { border: "1px solid #ccc", padding: "0" },
+                    },
                     h("div", {
                       contentEditable: true,
                       suppressContentEditableWarning: true,
-                      dangerouslySetInnerHTML: { __html: cell }, // ✅ initial content
-                      onInput: (e) => this.handleChange(rIdx, cIdx, e), // ✅ save changes
+                      dangerouslySetInnerHTML: { __html: cell }, // initial content
+                      onInput: (e) => this.handleChange(rIdx, cIdx, e),
                       onFocus: (e) =>
-                        this.setState({ activeCell: { r: rIdx, c: cIdx, el: e.target } }),
-                      style: { minHeight: "40px", padding: "6px", outline: "none" },
+                        this.setState({
+                          activeCell: { r: rIdx, c: cIdx, el: e.target },
+                        }),
+                      style: {
+                        minHeight: "40px",
+                        padding: "6px",
+                        outline: "none",
+                        whiteSpace: "pre-wrap", // ✅ allow multiple words & line breaks
+                      },
                     })
                   )
                 )
@@ -129,7 +150,15 @@
           "div",
           { style: { marginTop: "10px" } },
           h("button", { type: "button", onClick: this.addRow }, "➕ Add Row"),
-          h("button", { type: "button", onClick: this.addCol, style: { marginLeft: "8px" } }, "➕ Add Column")
+          h(
+            "button",
+            {
+              type: "button",
+              onClick: this.addCol,
+              style: { marginLeft: "8px" },
+            },
+            "➕ Add Column"
+          )
         )
       );
     },
@@ -137,7 +166,11 @@
 
   const TablePreview = createClass({
     render: function () {
-      return h("div", { dangerouslySetInnerHTML: { __html: toHtmlTable(this.props.value || [[""]]) } });
+      return h("div", {
+        dangerouslySetInnerHTML: {
+          __html: toHtmlTable(this.props.value || [[""]]),
+        },
+      });
     },
   });
 
