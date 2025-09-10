@@ -29,4 +29,3 @@ collections:
       - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
       - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
       - { label: "Meta Keywords", name: "meta_keywords", widget: "list", required: false }
-
