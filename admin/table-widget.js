@@ -1,15 +1,6 @@
 /* global CMS, createClass, h */
 
 (function () {
-  function escapeHtml(str) {
-    return String(str)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
   function toHtmlTable(rows) {
     const safeRows = rows && rows.length ? rows : [[""]];
     const htmlRows = safeRows
@@ -59,9 +50,10 @@
       this.props.onChange(rows);
     },
 
-    handleChange: function (r, c, e) {
+    handleBlur: function (r, c, e) {
+      // Only update when editing finishes
       const rows = this.state.rows.map((row) => row.slice());
-      rows[r][c] = e.target.innerHTML; // store HTML so formatting works
+      rows[r][c] = e.target.innerHTML;
       this.update(rows);
     },
 
@@ -120,29 +112,23 @@
                 row.map((cell, cIdx) =>
                   h(
                     "td",
-                    {
-                      key: cIdx,
-                      style: { border: "1px solid #ccc", padding: "0" },
-                    },
+                    { key: cIdx, style: { border: "1px solid #ccc", padding: "0" } },
                     h("div", {
                       contentEditable: true,
                       suppressContentEditableWarning: true,
-                      // ❌ no dangerouslySetInnerHTML (prevents cursor jumps)
-                      defaultValue: cell, // show saved content
-                      onInput: (e) => this.handleChange(rIdx, cIdx, e),
+                      dangerouslySetInnerHTML: { __html: cell }, // initial content
                       onFocus: (e) =>
                         this.setState({
                           activeCell: { r: rIdx, c: cIdx, el: e.target },
                         }),
+                      onBlur: (e) => this.handleBlur(rIdx, cIdx, e), // update on blur
                       style: {
                         minHeight: "40px",
                         padding: "6px",
                         outline: "none",
-                        whiteSpace: "pre-wrap", // multiple words + line breaks
+                        whiteSpace: "pre-wrap",
                       },
-                    },
-                      cell // render cell text inside
-                    )
+                    })
                   )
                 )
               )
