@@ -130,7 +130,7 @@ Now that you’ve chosen your topic, you can begin writing the article. Use the 
      * Enter your primary keyword ("Yoga for Beginners") in the SEO plugin’s focus keyword field.
      * Follow the plugin's suggestions (green lights mean good to go!).
 
-!\[](/assets/uploads/blog/screenshot-2025-09-04-at-5.09.37 pm.png)
+![](/assets/uploads/blog/screenshot-2025-09-04-at-5.09.37 pm.png)
 
 ![](/assets/uploads/blog/categories-and-tags-selection.png)
 
@@ -219,7 +219,7 @@ Here is the article information:
 
 Craft the tweet dynamically for maximum engagement and impact.
 
-### **For WhatsApp Channel:**	
+### **For WhatsApp Channel:**
 
 I want to create a concise and engaging post for a WhatsApp Channel to share an article. The post should:
 
@@ -237,7 +237,7 @@ Here is the article information:
 
 Craft the post in 1-3 sentences, ensuring it is mobile-friendly and easy to read quickly.
 
-### **For Facebook Page:**	
+### **For Facebook Page:**
 
 I want to create an engaging Facebook post to share an article. The post should be dynamic, friendly, and appealing to a wide Facebook audience. Include the following:
 
@@ -255,7 +255,7 @@ Here is the article information: 
 
 Craft the post to grab attention, spark conversation, and motivate sharing.
 
-### **For Instagram:**	
+### **For Instagram:**
 
 I want to create a visually appealing Instagram post to share an article. The post should be engaging, concise, and in line with Instagram’s visually driven platform. Include the following:
 
