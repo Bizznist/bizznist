@@ -7,12 +7,7 @@
       .map(
         (r) =>
           "<tr>" +
-          r
-            .map(
-              (c) =>
-                `<td style="padding:6px;border:1px solid #ccc;">${c}</td>`
-            )
-            .join("") +
+          r.map((c) => `<td style="padding:6px;border:1px solid #ccc;">${c}</td>`).join("") +
           "</tr>"
       )
       .join("");
@@ -26,10 +21,7 @@
       const cells = [];
       const cellMatches = rowHtml.match(/<td[^>]*>([\s\S]*?)<\/td>/gi) || [];
       cellMatches.forEach((cellHtml) => {
-        const inner = cellHtml
-          .replace(/<td[^>]*>/i, "")
-          .replace(/<\/td>/i, "")
-          .trim();
+        const inner = cellHtml.replace(/<td[^>]*>/i, "").replace(/<\/td>/i, "").trim();
         cells.push(inner);
       });
       rows.push(cells.length ? cells : [""]);
@@ -52,7 +44,7 @@
 
     handleInput: function (r, c, e) {
       const rows = this.state.rows.map((row) => row.slice());
-      rows[r][c] = e.target.innerHTML; // ✅ get live typed HTML/text
+      rows[r][c] = e.target.innerHTML; // ✅ save live HTML content
       this.update(rows);
     },
 
@@ -88,15 +80,7 @@
           "div",
           { style: { marginBottom: "8px" } },
           h("button", { type: "button", onClick: () => this.formatText("bold") }, "B"),
-          h(
-            "button",
-            {
-              type: "button",
-              style: { marginLeft: "6px" },
-              onClick: () => this.formatText("italic"),
-            },
-            "I"
-          )
+          h("button", { type: "button", style: { marginLeft: "6px" }, onClick: () => this.formatText("italic") }, "I")
         ),
         h(
           "table",
@@ -109,24 +93,18 @@
                 "tr",
                 { key: rIdx },
                 row.map((cell, cIdx) =>
-                  h(
-                    "td",
-                    { key: cIdx, style: { border: "1px solid #ccc", padding: "0" } },
+                  h("td", { key: cIdx, style: { border: "1px solid #ccc", padding: "0" } },
                     h("div", {
                       contentEditable: true,
                       suppressContentEditableWarning: true,
-                      dangerouslySetInnerHTML: { __html: cell || "" }, // initial content
-                      onInput: (e) => this.handleInput(rIdx, cIdx, e),
-                      onFocus: (e) =>
-                        this.setState({
-                          activeCell: { r: rIdx, c: cIdx, el: e.target },
-                        }),
-                      style: {
-                        minHeight: "40px",
-                        padding: "6px",
-                        outline: "none",
-                        whiteSpace: "pre-wrap",
+                      ref: (el) => {
+                        if (el && !el.innerHTML) {
+                          el.innerHTML = cell; // ✅ only set once
+                        }
                       },
+                      onInput: (e) => this.handleInput(rIdx, cIdx, e),
+                      onFocus: (e) => this.setState({ activeCell: { r: rIdx, c: cIdx, el: e.target } }),
+                      style: { minHeight: "40px", padding: "6px", outline: "none", whiteSpace: "pre-wrap" }
                     })
                   )
                 )
@@ -138,15 +116,7 @@
           "div",
           { style: { marginTop: "10px" } },
           h("button", { type: "button", onClick: this.addRow }, "➕ Add Row"),
-          h(
-            "button",
-            {
-              type: "button",
-              onClick: this.addCol,
-              style: { marginLeft: "8px" },
-            },
-            "➕ Add Column"
-          )
+          h("button", { type: "button", onClick: this.addCol, style: { marginLeft: "8px" } }, "➕ Add Column")
         )
       );
     },
@@ -154,11 +124,7 @@
 
   const TablePreview = createClass({
     render: function () {
-      return h("div", {
-        dangerouslySetInnerHTML: {
-          __html: toHtmlTable(this.props.value || [[""]]),
-        },
-      });
+      return h("div", { dangerouslySetInnerHTML: { __html: toHtmlTable(this.props.value || [[""]]) } });
     },
   });
 
