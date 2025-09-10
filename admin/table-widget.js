@@ -61,7 +61,7 @@
 
     handleChange: function (r, c, e) {
       const rows = this.state.rows.map((row) => row.slice());
-      rows[r][c] = e.target.innerHTML; // keep HTML so formatting is preserved
+      rows[r][c] = e.target.innerHTML; // store HTML so formatting works
       this.update(rows);
     },
 
@@ -127,7 +127,8 @@
                     h("div", {
                       contentEditable: true,
                       suppressContentEditableWarning: true,
-                      dangerouslySetInnerHTML: { __html: cell }, // initial content
+                      // ❌ no dangerouslySetInnerHTML (prevents cursor jumps)
+                      defaultValue: cell, // show saved content
                       onInput: (e) => this.handleChange(rIdx, cIdx, e),
                       onFocus: (e) =>
                         this.setState({
@@ -137,9 +138,11 @@
                         minHeight: "40px",
                         padding: "6px",
                         outline: "none",
-                        whiteSpace: "pre-wrap", // ✅ allow multiple words & line breaks
+                        whiteSpace: "pre-wrap", // multiple words + line breaks
                       },
-                    })
+                    },
+                      cell // render cell text inside
+                    )
                   )
                 )
               )
