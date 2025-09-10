@@ -1,4 +1,5 @@
 /* global CMS, createClass, h */
+
 (function () {
   function escapeHtml(str) {
     return String(str)
@@ -15,8 +16,8 @@
       .map(
         (r) =>
           "<tr>" +
-          r.map((c) => `<td style="padding:6px;border:1px solid #ccc;">${escapeHtml(c)}</td>`).join("") +
-          "</tr>"
+          r.map((c) => `<td style="padding:6px;border:1px solid #ccc;">${c}</td>`).join("") +
+          "</tr>`
       )
       .join("");
     return `<table data-ncms-table="1" style="border-collapse:collapse;width:100%">${htmlRows}</table>`;
@@ -55,7 +56,7 @@
 
     handleChange: function (r, c, e) {
       const rows = this.state.rows.map((row) => row.slice());
-      rows[r][c] = e.target.textContent; // ✅ capture typed text
+      rows[r][c] = e.target.innerHTML; // ✅ store HTML so formatting works
       this.update(rows);
     },
 
@@ -86,15 +87,11 @@
       return h(
         "div",
         {},
-        // Formatting toolbar
+        // Toolbar
         h(
           "div",
           { style: { marginBottom: "8px" } },
-          h(
-            "button",
-            { type: "button", onClick: () => this.formatText("bold") },
-            "B"
-          ),
+          h("button", { type: "button", onClick: () => this.formatText("bold") }, "B"),
           h(
             "button",
             { type: "button", style: { marginLeft: "6px" }, onClick: () => this.formatText("italic") },
@@ -116,11 +113,11 @@
                     h("div", {
                       contentEditable: true,
                       suppressContentEditableWarning: true,
-                      children: cell, // ✅ render cell content normally
-                      onInput: (e) => this.handleChange(rIdx, cIdx, e),
+                      dangerouslySetInnerHTML: { __html: cell }, // ✅ initial content
+                      onInput: (e) => this.handleChange(rIdx, cIdx, e), // ✅ save changes
                       onFocus: (e) =>
                         this.setState({ activeCell: { r: rIdx, c: cIdx, el: e.target } }),
-                      style: { minHeight: "40px", padding: "6px", outline: "none" }
+                      style: { minHeight: "40px", padding: "6px", outline: "none" },
                     })
                   )
                 )
