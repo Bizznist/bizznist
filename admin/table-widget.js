@@ -16,7 +16,7 @@
       .map(
         (r) =>
           "<tr>" +
-          r.map((c) => `<td style="padding:6px;border:1px solid #ccc;">${c}</td>`).join("") +
+          r.map((c) => `<td style="padding:6px;border:1px solid #ccc;">${escapeHtml(c)}</td>`).join("") +
           "</tr>"
       )
       .join("");
@@ -43,7 +43,10 @@
 
   const TableControl = createClass({
     getInitialState: function () {
-      return { rows: this.props.value && this.props.value.length ? this.props.value : [[""]], activeCell: null };
+      return {
+        rows: this.props.value && this.props.value.length ? this.props.value : [[""]],
+        activeCell: null,
+      };
     },
 
     update(rows) {
@@ -53,7 +56,7 @@
 
     handleChange: function (r, c, e) {
       const rows = this.state.rows.map((row) => row.slice());
-      rows[r][c] = e.target.innerHTML; // store HTML with bold/italic tags
+      rows[r][c] = e.target.textContent; // ✅ capture typed text
       this.update(rows);
     },
 
@@ -113,9 +116,11 @@
                   h("td", { key: cIdx, style: { border: "1px solid #ccc", padding: "0" } },
                     h("div", {
                       contentEditable: true,
-                      dangerouslySetInnerHTML: { __html: cell },
+                      suppressContentEditableWarning: true,
+                      children: cell, // ✅ render cell content normally
                       onInput: (e) => this.handleChange(rIdx, cIdx, e),
-                      onFocus: (e) => this.setState({ activeCell: { r: rIdx, c: cIdx, el: e.target } }),
+                      onFocus: (e) =>
+                        this.setState({ activeCell: { r: rIdx, c: cIdx, el: e.target } }),
                       style: { minHeight: "40px", padding: "6px", outline: "none" }
                     })
                   )
