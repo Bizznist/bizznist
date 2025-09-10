@@ -68,18 +68,12 @@ Chrome is addressing this blind spot through the Soft Navigations API available 
 
   **navigationId**
 
-   
-
   and 
 
   **interaction-contentful-paint**
 * Document edge cases: auto-redirects,
 
-   
-
   **replaceState()**
-
-   
 
   usage, or custom navigational logic may not be caught—test thoroughly using real flows.
 
@@ -95,8 +89,11 @@ Chrome is addressing this blind spot through the Soft Navigations API available 
 
 ### Quick Recap Table
 
-FeatureBeforeWith Soft Navigations APISPA Traffic TrackingMissed soft navigationsMeasures LCP, CLS, INP in-pageNavigation TrackingPage reload onlyNavigation ID enables per-event trackingRUM Data GranularityCoarse metricsFine-grained, per-navigation UX metrics
-
+| Feature              | Before                  | With Soft Navigations API                |
+| -------------------- | ----------------------- | ---------------------------------------- |
+| SPA Traffic Tracking | Missed soft navigations | Measures LCP, CLS, INP in-page           |
+| Navigation Tracking  | Page reload only        | Navigation ID enables per-event tracking |
+| RUM Data Granularity | Coarse metrics          | Fine-grained, per-navigation UX metrics  |
 
 ### Why This Is a Game‑Changer
 
