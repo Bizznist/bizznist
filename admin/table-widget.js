@@ -50,10 +50,9 @@
       this.props.onChange(rows);
     },
 
-    handleBlur: function (r, c, e) {
-      // Only update when editing finishes
+    handleInput: function (r, c, e) {
       const rows = this.state.rows.map((row) => row.slice());
-      rows[r][c] = e.target.innerHTML;
+      rows[r][c] = e.target.innerHTML; // ✅ get live typed HTML/text
       this.update(rows);
     },
 
@@ -116,12 +115,12 @@
                     h("div", {
                       contentEditable: true,
                       suppressContentEditableWarning: true,
-                      dangerouslySetInnerHTML: { __html: cell }, // initial content
+                      dangerouslySetInnerHTML: { __html: cell || "" }, // initial content
+                      onInput: (e) => this.handleInput(rIdx, cIdx, e),
                       onFocus: (e) =>
                         this.setState({
                           activeCell: { r: rIdx, c: cIdx, el: e.target },
                         }),
-                      onBlur: (e) => this.handleBlur(rIdx, cIdx, e), // update on blur
                       style: {
                         minHeight: "40px",
                         padding: "6px",
