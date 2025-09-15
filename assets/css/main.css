@@ -836,7 +836,7 @@ section,
   width: 100%;
   min-height: 100vh;
   position: relative;
-  padding: 80px 0 60px 0;
+  padding: 0 0 0 0;
   display: flex;
   align-items: center;
   background: url(../img/hero-bg.png) top center no-repeat;
