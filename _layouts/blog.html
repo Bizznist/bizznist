@@ -10,6 +10,34 @@
   <link href="{{ '/assets/vendor/bootstrap/css/bootstrap.min.css' | relative_url }}" rel="stylesheet">
   <link href="{{ '/assets/vendor/bootstrap-icons/bootstrap-icons.css' | relative_url }}" rel="stylesheet">
   <link href="{{ '/assets/css/main.css' | relative_url }}" rel="stylesheet">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url }}"
+  },
+  "headline": "{{ page.title }}",
+  "image": ["{{ page.image }}"],
+  "author": {
+    "@type": "Person",
+    "name": "{{ page.author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Bizznist",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.bizznist.com/logo.png"
+    }
+  },
+  "datePublished": "{{ page.date }}",
+  "dateModified": "{{ page.date }}"
+}
+</script>
+  
 </head>
 <body class="blog-page">
 
