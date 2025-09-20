@@ -9,21 +9,10 @@
     </form>
   </div>
 
-  <script type="text/javascript">
-	atOptions = {
-		'key' : '2ab137bbc77cdc9d788a3045be175511',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/2ab137bbc77cdc9d788a3045be175511/invoke.js"></script>
-
   <!-- Recent Posts Widget -->
 <div class="recent-posts-widget widget-item">
   <h3 class="widget-title">Recent Posts</h3>
-  {% for post in site.posts limit:5 %}
+  {% for post in site.posts limit:12 %}
   <div class="post-item">
     {% if post.thumbnail %}
     <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="flex-shrink-0">
