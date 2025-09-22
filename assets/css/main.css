@@ -728,6 +728,23 @@ h6 {
   [data-aos-delay] {
     transition-delay: 0 !important;
   }
+  /* Ensure mobile menu toggle and nav are always on top & clickable */
+.header {
+  position: relative;
+  z-index: 9999;
+}
+
+.mobile-nav-toggle {
+  position: relative;
+  z-index: 10000;
+  cursor: pointer;
+}
+
+.navmenu {
+  position: relative;
+  z-index: 9998;
+}
+
 }
 
 /*--------------------------------------------------------------
@@ -2884,3 +2901,4 @@ section,
   font-weight: bold;
   text-decoration: none;
 }
+
