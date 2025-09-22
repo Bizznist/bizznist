@@ -2827,18 +2827,6 @@ section,
   z-index: 1000;
 }
 
-@media (min-width: 992px) {
-  .mobile-nav-toggle {
-    display: none !important; /* hide on desktop */
-  }
-}
-
-@media (max-width: 991px) {
-  .mobile-nav-toggle {
-     display: block !important; /* show on mobile */
-  }
-}
-
 
 .blog-section {
   max-width: 900px;
