@@ -2809,7 +2809,6 @@ section,
 
  /* Mobile dropdown handling */
   #navmenu .dropdown ul {
-    display: none;
     padding-left: 20px;
   }
 
