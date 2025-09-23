@@ -26,6 +26,8 @@
    * Mobile nav toggle
    */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+  console.log('Toggle button:', mobileNavToggleBtn);
+
 
   function mobileNavToogle() {
     document.querySelector('body').classList.toggle('mobile-nav-active');
