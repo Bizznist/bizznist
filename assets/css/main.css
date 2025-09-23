@@ -194,7 +194,7 @@ h6 {
 
   .header .btn-getstarted {
     order: 2;
-    margin: 0 15px 0 0;
+    margin: 0 55px 0 0;
     padding: 6px 10px;
     font-size: 13px !important;
   }
@@ -2777,9 +2777,9 @@ section,
 /* ===== Mobile Navigation Fix ===== */
 @media (max-width: 991px) {
   #navmenu {
-    position: unset;
-    top: 60px; /* match your header height */
-    right: 0;
+    position: fixed;
+    top: 22px; /* match your header height */
+    right: 10px;
     background: #fff;
     flex-direction: column;
     align-items: flex-start;
