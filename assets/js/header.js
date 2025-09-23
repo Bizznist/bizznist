@@ -1,5 +1,4 @@
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const body = document.querySelector("body");
     const navToggle = document.querySelector(".mobile-nav-toggle");
 
@@ -39,4 +38,3 @@
       });
     });
   });
-</script>
