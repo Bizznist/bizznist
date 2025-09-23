@@ -438,7 +438,7 @@ h6 {
     color: #fff;
     position: absolute;
     font-size: 32px;
-    top: 15px;
+    top: 30px;
     right: 15px;
     margin-right: 0;
     z-index: 9999;
@@ -2824,11 +2824,12 @@ section,
 
 /* Show hamburger menu on mobile */
 .mobile-nav-toggle {
+  position: relative;
   font-size: 28px;
   cursor: pointer;
   line-height: 0;
   color: #000; /* change to white if your header background is dark */
-  z-index: 1000;
+  z-index: 9999;
 }
 
 
