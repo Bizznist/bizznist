@@ -1,24 +1,16 @@
 <header id="header" class="header d-flex align-items-center fixed-top">
   <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-    <!-- Logo -->
     <a href="/" class="logo d-flex align-items-center me-auto">
       <img src="/assets/img/logo.png" alt="BizzNist">
     </a>
 
-    <!-- Hamburger Button -->
-    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-
-    <!-- Navigation Menu -->
     <nav id="navmenu" class="navmenu">
       <ul>
         <li><a href="/" class="active">Home</a></li>
         <li><a href="/about-us">About</a></li>
         <li class="dropdown">
-          <a href="/services">
-            <span>Services</span> 
-            <i class="bi bi-chevron-down toggle-dropdown"></i>
-          </a>
+          <a href="/services"><span>Services</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
           <ul>
             <li><a href="/services/website-development">Website Development</a></li>
             <li><a href="/services/advertisement-management">Advertisement Management</a></li>
@@ -27,40 +19,10 @@
         <li><a href="/blog">Blog</a></li>
         <li><a href="/pricing">Pricing</a></li>
       </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
 
-    <!-- CTA -->
-    <a class="btn-getstarted flex-md-shrink-0" href="/contact">
-      Book a Free Consultation
-    </a>
+    <a class="btn-getstarted flex-md-shrink-0" href="/contact">Book a Free Consultation</a>
+
   </div>
 </header>
-
-<!-- JavaScript to handle open/close -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const body = document.querySelector("body");
-    const navToggle = document.querySelector(".mobile-nav-toggle");
-
-    navToggle.addEventListener("click", function () {
-      body.classList.toggle("mobile-nav-active");
-
-      // Switch between hamburger (bi-list) and close (bi-x)
-      this.classList.toggle("bi-list");
-      this.classList.toggle("bi-x");
-    });
-
-    // Close menu when any nav link is clicked (optional)
-    document.querySelectorAll("#navmenu a").forEach(link => {
-      link.addEventListener("click", () => {
-        if (body.classList.contains("mobile-nav-active")) {
-          body.classList.remove("mobile-nav-active");
-          navToggle.classList.add("bi-list");
-          navToggle.classList.remove("bi-x");
-        }
-      });
-    });
-  });
-</script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
