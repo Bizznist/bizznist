@@ -382,7 +382,7 @@ h6 {
     margin-left: 5px;
     width: 30px;
     height: 30px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -438,8 +438,8 @@ h6 {
     color: #040404;
     position: absolute;
     font-size: 32px;
-    top: 30px;
-    right: 15px;
+    top: 10px;
+    right: 25px;
     margin-right: 0;
     z-index: 9999;
   }
@@ -2780,7 +2780,6 @@ section,
     position: unset;
     top: 60px; /* match your header height */
     right: 0;
-    width: 28px;
     background: #fff;
     flex-direction: column;
     align-items: flex-start;
@@ -2797,12 +2796,13 @@ section,
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 100%;
+    width: 90%;
+    top: 10px;
   }
 
   #navmenu ul li {
     width: 100%;
-    padding: 10px 20px;
+    padding: 0;
   }
 
   #navmenu ul li a {
