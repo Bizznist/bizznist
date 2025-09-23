@@ -196,6 +196,7 @@ h6 {
     order: 2;
     margin: 0 15px 0 0;
     padding: 6px 10px;
+    font-size: 13px !important;
   }
 
   .header .navmenu {
