@@ -1,5 +1,4 @@
 // inject-global-scripts.js
-
 document.addEventListener("DOMContentLoaded", () => {
   // Inject <head> includes
   fetch("/assets/includes/head-includes.html")
