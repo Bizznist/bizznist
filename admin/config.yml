@@ -1,3 +1,4 @@
+# ✅ Blog Management Tab
 backend:
   name: git-gateway
   branch: main
@@ -28,3 +29,19 @@ collections:
       - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
       - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
       - { label: "Meta Keywords", name: "meta_keywords", widget: "list", required: false }
+
+
+# ✅ NEW Ad Management Tab
+collections:
+  - name: "ads"
+    label: "Ad Management"
+    files:
+      - label: "Ad Slots"
+        name: "ads"
+        file: "content/data/ads.json"
+        format: "json"
+        fields:
+          - { label: "Main Ad", name: "ad-slot", widget: "text" }
+          - { label: "Second Ad", name: "ad-slot-1", widget: "text" }
+          - { label: "In-image Ad", name: "ad-slot-inimage", widget: "text" }
+          - { label: "Sidebar Ad", name: "ad-slot-sidebar", widget: "text" }
