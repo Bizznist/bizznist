@@ -32,7 +32,6 @@ collections:
 
 
 # ✅ NEW Ad Management Tab
-collections:
   - name: "ads"
     label: "Ad Management"
     files:
