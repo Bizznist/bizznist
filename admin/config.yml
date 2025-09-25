@@ -45,6 +45,10 @@ collections:
           - { label: "In-image Ad", name: "ad-slot-inimage", widget: "text" }
           - { label: "Sidebar Ad", name: "ad-slot-sidebar", widget: "text" }
 
+# ✅ Global Script Injects (HTML-based)
+  - name: "global-scripts"
+    label: "Global Script Includes"
+    files:
       - label: "Head Scripts"
         name: "head-scripts"
         file: "assets/includes/head-includes.html"
