@@ -1,6 +1,6 @@
 {
-  "ad-slot": "<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-XXXXXX' data-ad-slot='1234567890' data-ad-format='auto' data-full-width-responsive='true'></ins>",
-  "ad-slot-1": "<a href='https://affiliate-link.com' target='_blank'><img src='https://yourcdn.com/banner.jpg' alt='Banner' style='width:100%;'></a>",
-  "ad-slot-inimage": "<script src='https://affiliate-network.com/ad.js'></script>",
-  "ad-slot-sidebar": "<div class='card'><img src='/assets/images/offer.jpg' class='card-img-top' alt='Ad'><div class='card-body'><h5 class='card-title'>Limited Offer!</h5><a href='https://yourpromo.com' class='btn btn-primary'>Grab Deal</a></div></div>"
+  "ad-slot": "<p>Reema Roy</p>",
+  "ad-slot-1": "<p>Reema Roy</p>",
+  "ad-slot-inimage": "<p>Reema Roy</p>",
+  "ad-slot-sidebar": "<p>Reema Roy</p>"
 }
