@@ -60,3 +60,27 @@ collections:
         file: "assets/includes/body-includes.html"
         fields:
           - { label: "Body Code", name: "body", widget: "code", default: "", required: false }
+
+  # ✅ Global Script Injects (HTML-based)
+  - name: "global-scripts"
+    label: "Global Script Includes"
+    files:
+      - label: "Head Scripts"
+        name: "head-scripts"
+        file: "assets/includes/head-includes.html"
+        fields:
+          - label: "Head Code"
+            name: "body"
+            widget: "text"
+            required: false
+            editor_components: []
+
+      - label: "Body Scripts"
+        name: "body-scripts"
+        file: "assets/includes/body-includes.html"
+        fields:
+          - label: "Body Code"
+            name: "body"
+            widget: "text"
+            required: false
+            editor_components: []
