@@ -1,3 +1,4 @@
+<div id="ad-slot-sidebar" class="ad-space"></div>
 <div class="widgets-container">
 
   <!-- Search Widget -->
@@ -12,7 +13,7 @@
   <!-- Recent Posts Widget -->
 <div class="recent-posts-widget widget-item">
   <h3 class="widget-title">Recent Posts</h3>
-  {% for post in site.posts limit:12 %}
+  {% for post in site.posts limit:10 %}
   <div class="post-item">
     {% if post.thumbnail %}
     <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="flex-shrink-0">
@@ -29,6 +30,7 @@
 
 </div>
 
+<div id="ad-slot-sidebar-2" class="ad-space"></div>
 
 <style>
 /* Sidebar recent posts widget */
