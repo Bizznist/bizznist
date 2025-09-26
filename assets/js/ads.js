@@ -3,23 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   fetch("/content/data/ads.json")
     .then(res => res.json())
-    .then(adMap => {
-      Object.keys(adMap).forEach(id => {
-        const slot = document.getElementById(id);
+    .then(adList => {
+      adList.forEach(ad => {
+        const slot = document.getElementById(ad.id);
         if (slot) {
-          slot.innerHTML = adMap[id]; // insert HTML first
+          slot.innerHTML = ad.code;
 
-          // Special case for this external ad script
-          if (id === "ad-slot") {
-            const script = document.createElement("script");
-            script.src = "//wormdistressedunit.com/0a87f1b8f78366019c87f1e94c2638ae/invoke.js";
-            script.setAttribute("async", "");
-            script.setAttribute("data-cfasync", "false");
-            slot.appendChild(script);
-            console.log("🟢 External ad script injected into #ad-slot");
-          }
-
-          // If AdSense (optional)
+          // Optional: AdSense support
           try {
             if (window.adsbygoogle) {
               (adsbygoogle = window.adsbygoogle || []).push({});
@@ -27,8 +17,21 @@ document.addEventListener("DOMContentLoaded", function () {
           } catch (e) {
             console.warn("⚠️ AdSense push failed:", e);
           }
+
+          // Optional: Support external JS ads like invoke.js
+          if (ad.code.includes("invoke.js")) {
+            const scriptMatch = ad.code.match(/src="([^"]+)"/);
+            if (scriptMatch) {
+              const script = document.createElement("script");
+              script.src = scriptMatch[1];
+              script.async = true;
+              script.setAttribute("data-cfasync", "false");
+              slot.appendChild(script);
+              console.log(`🟢 External ad script injected for #${ad.id}`);
+            }
+          }
         } else {
-          console.warn(`⚠️ No element found with ID: ${id}`);
+          console.warn(`⚠️ No element found with ID: ${ad.id}`);
         }
       });
     })
