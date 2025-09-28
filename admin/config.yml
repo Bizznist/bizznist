@@ -32,21 +32,23 @@ collections:
 
 
 # ✅ NEW Ad Management Tab
-  - name: "ads"
-    label: "Ad Management"
-    files:
-      - label: "Ad Slots"
-        name: "ads"
-        file: "content/data/ads.json"
-        format: "json"
-        fields:
-          - label: "Ad Blocks"
-            name: ""
-            widget: "list"
-            summary: "{{fields.id}}"
-            fields:
-              - { label: "Ad Slot ID", name: "id", widget: "string" }
-              - { label: "Ad Code", name: "code", widget: "text" }
+ - name: "ads"
+  label: "Ad Management"
+  files:
+    - label: "Ad Slots"
+      name: "ads"
+      file: "content/data/ads.json"
+      format: "json"
+      fields:
+        - label: "Ad Blocks"
+          name: "ad_blocks"
+          widget: "list"
+          summary: "{{fields.slot_id}}"
+          fields:
+            - { label: "Ad Slot ID (e.g. ad-slot, ad-footer)", name: "slot_id", widget: "string" }
+            - { label: "Ad Code (HTML or Script)", name: "code", widget: "text" }
+
+
 
   # ✅ Global Script Injects (HTML-based)
   - name: "global-scripts"
