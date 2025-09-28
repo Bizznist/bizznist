@@ -2,13 +2,14 @@
   "ad_blocks": [
     {
       "slot_id": "header-ad",
-      "class":"ad-space",
-      "code": "<div>Ad 1</div>"
+      "class": "ad-space",
+      "code": "<script async=\"async\" data-cfasync=\"false\" src=\"//wormdistressedunit.com/0a87f1b8f78366019c87f1e94c2638ae/invoke.js\"></script>\n<div id=\"container-0a87f1b8f78366019c87f1e94c2638ae\"></div>"
     },
     {
       "id": "ad-slot-1",
-      "class":"ad-space",
-      "code": "<script src='...'></script>"
+      "class": "ad-space",
+      "code": "<script type='text/javascript' src='//wormdistressedunit.com/a4/a0/e5/a4a0e5d0466ca41c2a7d78f1ab4dc22b.js'></script>",
+      "slot_id": "before-footer-ad"
     }
   ]
 }
