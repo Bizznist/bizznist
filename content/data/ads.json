@@ -10,6 +10,34 @@
       "class": "ad-space",
       "code": "<script type='text/javascript' src='//wormdistressedunit.com/a4/a0/e5/a4a0e5d0466ca41c2a7d78f1ab4dc22b.js'></script>",
       "slot_id": "before-footer-ad"
+    },
+    {
+      "slot_id": "ad-slot-1",
+      "code": "<script async=\"async\" data-cfasync=\"false\" src=\"//wormdistressedunit.com/0a87f1b8f78366019c87f1e94c2638ae/invoke.js\"></script>\n<div id=\"container-0a87f1b8f78366019c87f1e94c2638ae\"></div>"
+    },
+    {
+      "slot_id": "ad-slot-2",
+      "code": "<script async=\"async\" data-cfasync=\"false\" src=\"//wormdistressedunit.com/0a87f1b8f78366019c87f1e94c2638ae/invoke.js\"></script>\n<div id=\"container-0a87f1b8f78366019c87f1e94c2638ae\"></div>"
+    },
+    {
+      "slot_id": "ad-slot-3",
+      "code": "<script async=\"async\" data-cfasync=\"false\" src=\"//wormdistressedunit.com/0a87f1b8f78366019c87f1e94c2638ae/invoke.js\"></script>\n<div id=\"container-0a87f1b8f78366019c87f1e94c2638ae\"></div>"
+    },
+    {
+      "slot_id": "ad-slot-4",
+      "code": "<script async=\"async\" data-cfasync=\"false\" src=\"//wormdistressedunit.com/0a87f1b8f78366019c87f1e94c2638ae/invoke.js\"></script>\n<div id=\"container-0a87f1b8f78366019c87f1e94c2638ae\"></div>"
+    },
+    {
+      "slot_id": "ad-slot-inimage",
+      "code": "<script type=\"text/javascript\">\n\tatOptions = {\n\t\t'key' : '5d8f2144de59067f8ad9d41286ab8251',\n\t\t'format' : 'iframe',\n\t\t'height' : 50,\n\t\t'width' : 320,\n\t\t'params' : {}\n\t};\n</script>\n<script type=\"text/javascript\" src=\"//wormdistressedunit.com/5d8f2144de59067f8ad9d41286ab8251/invoke.js\"></script>"
+    },
+    {
+      "slot_id": "ad-slot-sidebar-right",
+      "code": "<script type=\"text/javascript\">\n\tatOptions = {\n\t\t'key' : '2ab137bbc77cdc9d788a3045be175511',\n\t\t'format' : 'iframe',\n\t\t'height' : 250,\n\t\t'width' : 300,\n\t\t'params' : {}\n\t};\n</script>\n<script type=\"text/javascript\" src=\"//wormdistressedunit.com/2ab137bbc77cdc9d788a3045be175511/invoke.js\"></script>"
+    },
+    {
+      "slot_id": "ad-slot-sidebar-left",
+      "code": "<script type=\"text/javascript\">\n\tatOptions = {\n\t\t'key' : '2ab137bbc77cdc9d788a3045be175511',\n\t\t'format' : 'iframe',\n\t\t'height' : 250,\n\t\t'width' : 300,\n\t\t'params' : {}\n\t};\n</script>\n<script type=\"text/javascript\" src=\"//wormdistressedunit.com/2ab137bbc77cdc9d788a3045be175511/invoke.js\"></script>"
     }
   ]
 }
