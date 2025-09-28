@@ -4,7 +4,7 @@ label: "Ad Blocks"
 
 [
   {
-    "id": "ad-slot",
+    "id": "header-ad",
     "class":"ad-space",
     "code": "<ins>Ad HTML here</ins>"
   },
@@ -14,17 +14,32 @@ label: "Ad Blocks"
     "code": "<script>Other Ad</script>"
   },
   {
+    "id": "ad-slot-2",
+    "class":"ad-space",
+    "code": "<script>Other Ad</script>"
+  },
+  {
+    "id": "ad-slot-3",
+    "class":"ad-space",
+    "code": "<script>Other Ad</script>"
+  },
+  {
+    "id": "ad-slot-4",
+    "class":"ad-space",
+    "code": "<script>Other Ad</script>"
+  },
+  {
     "id": "ad-slot-inimage",
     "class":"ad-space",
     "code": "<div>Footer Ad</div>"
   },
   {
-    "id": "ad-slot-sidebar",
+    "id": "ad-slot-sidebar-right",
     "class":"ad-space",
     "code": "<ins>Ad HTML here</ins>"
   },
   {
-    "id": "ad-slot-sidebar-2",
+    "id": "ad-slot-sidebar-left",
     "class":"ad-space",
     "code": "<ins>Ad HTML here</ins>"
   },
@@ -33,9 +48,5 @@ label: "Ad Blocks"
     "class":"ad-space",
     "code": "<ins>Ad HTML here</ins>"
   },
-  {
-    "id": "header-ad",
-    "class":"ad-space",
-    "code": "<ins>Ad HTML here</ins>"
-  }
+
 ]
