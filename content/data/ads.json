@@ -33,7 +33,7 @@
     },
     {
       "slot_id": "ad-slot-sidebar-right",
-      "code": "<script type=\"text/javascript\">\n\tatOptions = {\n\t\t'key' : '2ab137bbc77cdc9d788a3045be175511',\n\t\t'format' : 'iframe',\n\t\t'height' : 250,\n\t\t'width' : 300,\n\t\t'params' : {}\n\t};\n</script>\n"
+      "code": "<script type=\"text/javascript\">\n\tatOptions = {\n\t\t'key' : '2ab137bbc77cdc9d788a3045be175511',\n\t\t'format' : 'iframe',\n\t\t'height' : 250,\n\t\t'width' : 300,\n\t\t'params' : {}\n\t};\n</script>"
     },
     {
       "slot_id": "ad-slot-sidebar-left",
