@@ -30,7 +30,6 @@ collections:
       - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
       - { label: "Meta Keywords", name: "meta_keywords", widget: "list", required: false }
 
-
 # ✅ NEW Ad Management Tab
  - name: "ads"
   label: "Ad Management"
@@ -47,7 +46,6 @@ collections:
           fields:
             - { label: "Ad Slot ID (e.g. ad-slot, ad-footer)", name: "slot_id", widget: "string" }
             - { label: "Ad Code (HTML or Script)", name: "code", widget: "text" }
-
 
 
   # ✅ Global Script Injects (HTML-based)
