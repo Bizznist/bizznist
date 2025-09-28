@@ -2,36 +2,41 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("✅ ads.js is running");
 
   fetch("/content/data/ads.json")
-    .then(res => res.json())
-    .then(adList => {
+    .then(res => res.text()) // fetch as text first
+    .then(text => {
+      // Remove frontmatter if exists
+      const jsonText = text.replace(/---[\s\S]*?---/, '').trim();
+      return JSON.parse(jsonText);
+    })
+    .then(data => {
+      const adList = data.ad_blocks || [];
       adList.forEach(ad => {
-        const slot = document.getElementById(ad.id);
-        if (slot) {
-          slot.innerHTML = ad.code;
+        const el = document.getElementById(ad.slot_id);
+        if (el) {
+          el.innerHTML = ad.code;
 
-          // Optional: AdSense support
+          // AdSense support (optional)
           try {
             if (window.adsbygoogle) {
               (adsbygoogle = window.adsbygoogle || []).push({});
             }
-          } catch (e) {
-            console.warn("⚠️ AdSense push failed:", e);
-          }
+          } catch (e) {}
 
-          // Optional: Support external JS ads like invoke.js
-          if (ad.code.includes("invoke.js")) {
-            const scriptMatch = ad.code.match(/src="([^"]+)"/);
-            if (scriptMatch) {
+          // External script support
+          if (ad.code.includes("<script") && ad.code.includes("src=")) {
+            const match = ad.code.match(/src=["']([^"']+)["']/);
+            if (match) {
               const script = document.createElement("script");
-              script.src = scriptMatch[1];
+              script.src = match[1];
               script.async = true;
               script.setAttribute("data-cfasync", "false");
-              slot.appendChild(script);
-              console.log(`🟢 External ad script injected for #${ad.id}`);
+              el.appendChild(script);
+              console.log(`🟢 Loaded external ad script into #${ad.slot_id}`);
             }
           }
+
         } else {
-          console.warn(`⚠️ No element found with ID: ${ad.id}`);
+          console.warn(`⚠️ No div found for ID: ${ad.slot_id}`);
         }
       });
     })
