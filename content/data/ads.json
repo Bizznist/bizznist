@@ -48,5 +48,10 @@ label: "Ad Blocks"
     "class":"ad-space",
     "code": "<ins>Ad HTML here</ins>"
   },
+  {
+    "id": "before-footer-ad",
+    "class":"ad-space",
+    "code": "<ins>Ad HTML here</ins>"
+  },
 
 ]
