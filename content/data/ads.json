@@ -38,6 +38,10 @@
     {
       "slot_id": "ad-slot-sidebar-left",
       "code": "<script type=\"text/javascript\">\n\tatOptions = {\n\t\t'key' : '2ab137bbc77cdc9d788a3045be175511',\n\t\t'format' : 'iframe',\n\t\t'height' : 250,\n\t\t'width' : 300,\n\t\t'params' : {}\n\t};\n</script>\n<script type=\"text/javascript\" src=\"//wormdistressedunit.com/2ab137bbc77cdc9d788a3045be175511/invoke.js\"></script>"
+    },
+    {
+      "slot_id": "footer-ad",
+      "code": "<script async=\"async\" data-cfasync=\"false\" src=\"//wormdistressedunit.com/0a87f1b8f78366019c87f1e94c2638ae/invoke.js\"></script>\n<div id=\"container-0a87f1b8f78366019c87f1e94c2638ae\"></div>"
     }
   ]
 }
