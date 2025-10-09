@@ -152,7 +152,9 @@
   margin-bottom: 1rem;
   line-height: 1.4;
 }
-
+.hero-buttons{
+  display: flex;
+}
 .hero-buttons .btn {
   margin: 0 8px;
   padding: 0.6rem 1.5rem;
@@ -164,10 +166,14 @@ a.btn.btn-youtube {
   background: #FF0000;
   color: white;
   border-color: red;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 a.btn.btn-instagram {
   background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
   color: white;
+  padding-left: 10px;
+  padding-right: 10px;
 }    
 @media (max-width: 768px) {
   .hero-section {
@@ -194,11 +200,10 @@ a.btn.btn-instagram {
     </section>
       <div class="hero-content" style="
                   text-align: center;
-                  padding-bottom: 20px;
                   padding-top: 20px;
               ">
     <div class="hero-buttons">
-     <ul>
+     
       <a href="https://www.youtube.com/@WanderwithReema?sub_confirmation=1" 
        class="btn btn-youtube" 
        target="_blank" 
@@ -212,7 +217,7 @@ a.btn.btn-instagram {
          rel="noopener noreferrer">
          Follow on Instagram
       </a>
-     </ul>
+     
     </div>
   </div>
     </section><!-- /Hero Section -->
