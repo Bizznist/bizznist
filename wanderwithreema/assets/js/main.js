@@ -119,7 +119,7 @@
 
   
 <!-- YouTube Gallery Script -->
-const API_KEY = "AIzaSyAgSIF-DPHEAqjqPAf2CSa02BiTJAhECzs";
+  const API_KEY = "AIzaSyAgSIF-DPHEAqjqPAf2CSa02BiTJAhECzs";
   const CHANNEL_ID = "UCzrsI894Qk73JO0qQNiaP_g";
   const videoWrapper = document.getElementById("youtube-video-wrapper");
 
@@ -128,102 +128,139 @@ const API_KEY = "AIzaSyAgSIF-DPHEAqjqPAf2CSa02BiTJAhECzs";
     let nextPageToken = '';
     const maxResults = 50;
 
-    do {
-      const searchRes = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=${maxResults}&pageToken=${nextPageToken}`
-      );
-      const searchData = await searchRes.json();
+    try {
+      do {
+        const searchRes = await fetch(
+          `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=${maxResults}&pageToken=${nextPageToken}`
+        );
+        const searchData = await searchRes.json();
 
-      const videoIds = searchData.items
-        .filter(item => item.id.kind === "youtube#video")
-        .map(item => item.id.videoId);
+        const videoIds = searchData.items
+          .filter(item => item.id && item.id.kind === "youtube#video")
+          .map(item => item.id.videoId);
 
-      if (!videoIds.length) break;
+        if (!videoIds.length) break;
 
-      const statsRes = await fetch(
-        `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${videoIds.join(',')}&part=statistics,snippet`
-      );
-      const statsData = await statsRes.json();
+        const statsRes = await fetch(
+          `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${videoIds.join(',')}&part=statistics,snippet`
+        );
+        const statsData = await statsRes.json();
 
-      statsData.items.forEach(video => {
-        videos.push({
-          id: video.id,
-          title: video.snippet.title,
-          views: parseInt(video.statistics.viewCount),
-          publishedAt: video.snippet.publishedAt,
-          channel: video.snippet.channelTitle
+        // Merge results into videos array
+        statsData.items.forEach(video => {
+          videos.push({
+            id: video.id,
+            title: video.snippet.title,
+            views: (video.statistics && video.statistics.viewCount) ? parseInt(video.statistics.viewCount, 10) : 0,
+            publishedAt: video.snippet.publishedAt,
+            channel: video.snippet.channelTitle
+          });
         });
-      });
 
-      nextPageToken = searchData.nextPageToken;
-    } while (nextPageToken);
+        nextPageToken = searchData.nextPageToken;
+      } while (nextPageToken);
+    } catch (err) {
+      console.error('YouTube API error', err);
+    }
 
-    // Filter 10K+ view videos
+    if (!videos.length) return;
+
+    // --- Build final list according to your rules ---
+    // 1) Top viewed short (highest views) first
+    // 2) Then other shorts having >=10K views (ordered by views desc)
+    // 3) Finally, the most recently uploaded short (regardless of view count) — appended if not already present
+    // 4) Limit total to 10
+
+    // ensure unique by id
+    const uniqueById = {};
+    videos = videos.filter(v => {
+      if (uniqueById[v.id]) return false;
+      uniqueById[v.id] = true;
+      return true;
+    });
+
+    // high view videos (>= 10k)
     const highViewVideos = videos.filter(v => v.views >= 10000);
 
-    // Sort high view videos by views descending
+    // sort high view videos by views desc
     highViewVideos.sort((a, b) => b.views - a.views);
 
-    // Get the top-viewed one
-    const topViewed = highViewVideos[0];
+    // top viewed (highest)
+    const topViewed = highViewVideos.length ? highViewVideos[0] : null;
 
-    // Get the most recent uploaded video overall
-    const latestVideo = [...videos].sort(
-      (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
-    )[0];
+    // rest of high view videos excluding top
+    const restHighViews = highViewVideos.length > 1 ? highViewVideos.slice(1) : [];
 
-    // Combine: top viewed → rest high views → latest
+    // latest overall (by publishedAt)
+    const latestVideo = [...videos].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))[0];
+
+    // combine
     let finalVideos = [];
     if (topViewed) finalVideos.push(topViewed);
-
-    const restHighViews = highViewVideos.slice(1);
     finalVideos = finalVideos.concat(restHighViews);
 
     if (latestVideo && !finalVideos.find(v => v.id === latestVideo.id)) {
       finalVideos.push(latestVideo);
     }
 
-    // Limit to 10 total
+    // ensure we still have meaningful items — if not enough high views, fill with next best by views
+    if (finalVideos.length < 10) {
+      // get all videos sorted by views desc
+      const othersByViews = videos
+        .filter(v => !finalVideos.find(f => f.id === v.id))
+        .sort((a, b) => b.views - a.views);
+      const need = 10 - finalVideos.length;
+      finalVideos = finalVideos.concat(othersByViews.slice(0, need));
+    }
+
+    // cap at 10
     finalVideos = finalVideos.slice(0, 10);
 
-    // Append video slides
+    // Append slides (use thumbnails first to avoid heavy iframe load if desired)
     finalVideos.forEach(video => {
-      const formattedViews = video.views >= 1_000_000
-        ? (video.views / 1_000_000).toFixed(1) + 'M'
-        : (video.views / 1000).toFixed(1) + 'K';
+      const formattedViews = formatViewsCount(video.views);
 
       const slide = document.createElement('div');
       slide.classList.add('swiper-slide');
       slide.innerHTML = `
         <div class="youtube-slide">
-          <iframe src="https://www.youtube.com/embed/${video.id}" allowfullscreen></iframe>
+          <div class="youtube-thumb-wrapper" data-video-id="${video.id}">
+            <img class="youtube-thumb" alt="${video.title}" src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg" loading="lazy" />
+            <button class="youtube-play-btn" aria-label="Play ${video.title}">&#9658;</button>
+          </div>
           <div class="youtube-info">
             <p class="title"><span class="shorts-icon"></span>${video.title}</p>
-            <p class="views">${formattedViews} views</p>
+            <p class="views">${formattedViews}</p>
           </div>
         </div>
       `;
       videoWrapper.appendChild(slide);
     });
 
-    // Wait for iframes to load before initializing swiper
-    const iframes = videoWrapper.querySelectorAll('iframe');
-    let loadedCount = 0;
-    iframes.forEach(iframe => {
-      iframe.addEventListener('load', () => {
-        loadedCount++;
-        if (loadedCount === iframes.length) {
-          initYouTubeSwiper();
-        }
-      });
+    // Lazy replace thumbnail with iframe on click to improve performance
+    videoWrapper.addEventListener('click', function(e) {
+      const btn = e.target.closest('.youtube-play-btn');
+      if (!btn) return;
+      const wrapper = btn.closest('.youtube-thumb-wrapper');
+      const vid = wrapper.getAttribute('data-video-id');
+      // replace wrapper content with iframe
+      wrapper.innerHTML = `<iframe src="https://www.youtube.com/embed/${vid}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
     });
+
+    // Initialize swiper after a tiny timeout to ensure DOM painted
+    setTimeout(initYouTubeSwiper, 100);
   }
 
   function initYouTubeSwiper() {
+    // Destroy existing swiper instance if any (safe-guard)
+    if (window.__wanderYouTubeSwiper && window.__wanderYouTubeSwiper.destroy) {
+      try { window.__wanderYouTubeSwiper.destroy(true, true); } catch(e) {}
+    }
+
     const swiper = new Swiper('.init-swiper', {
       loop: true,
       speed: 600,
-      autoplay: { delay: 4000 },
+      autoplay: { delay: 4000, disableOnInteraction: false },
       slidesPerView: 1,
       centeredSlides: true,
       spaceBetween: 20,
@@ -233,10 +270,18 @@ const API_KEY = "AIzaSyAgSIF-DPHEAqjqPAf2CSa02BiTJAhECzs";
         992: { slidesPerView: 3 },
         1200: { slidesPerView: 4 },
       },
-      initialSlide: 0 // ensures starts from first (top viewed)
+      initialSlide: 0
     });
 
-    videoWrapper.style.visibility = 'visible';
+    // Ensure slider shows the first real slide (top viewed) when using loop
+    // slideToLoop(0, 0) moves to the "first" slide taking looping duplicates into account
+    swiper.slideToLoop(0, 0, false);
+
+    // expose for potential debugging
+    window.__wanderYouTubeSwiper = swiper;
+
+    // reveal wrapper
+    if (videoWrapper) videoWrapper.style.visibility = 'visible';
   }
 
   // Start fetching shorts
