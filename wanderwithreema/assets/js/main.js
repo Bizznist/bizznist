@@ -119,28 +119,19 @@
 
   
 <!-- YouTube Gallery Script -->
-  // == YouTube Gallery + Swiper Fixes ==
 const API_KEY = "AIzaSyAgSIF-DPHEAqjqPAf2CSa02BiTJAhECzs";
 const CHANNEL_ID = "UCzrsI894Qk73JO0qQNiaP_g";
 const videoWrapper = document.getElementById("youtube-video-wrapper");
 
 if (!videoWrapper) return;
 
-// Format views
+// --- Helper Functions ---
 function formatViewsCount(num) {
   if (typeof num !== "number" || isNaN(num)) return "— views";
   if (num < 1000) return `${num} views`;
   if (num < 1_000_000) return `${(num / 1000).toFixed(1)}K views`;
   return `${(num / 1_000_000).toFixed(1)}M views`;
 }
-
-// Clear wrapper
-function clearWrapper() {
-  while (videoWrapper.firstChild) videoWrapper.removeChild(videoWrapper.firstChild);
-  videoWrapper.style.visibility = "hidden";
-}
-
-// Escape HTML
 function escapeHtml(str) {
   return String(str)
     .replace(/&/g, "&amp;")
@@ -150,7 +141,26 @@ function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
-// Handle play button click
+// --- Modal Player Setup ---
+function createVideoModal() {
+  const modal = document.createElement("div");
+  modal.id = "videoModal";
+  modal.className = "video-modal";
+  modal.innerHTML = `
+    <div class="video-wrapper">
+      <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  modal.addEventListener("click", () => {
+    modal.classList.remove("active");
+    document.getElementById("videoPlayer").src = "";
+    if (window.__wanderYouTubeSwiper) window.__wanderYouTubeSwiper.autoplay.start();
+  });
+}
+createVideoModal();
+
+// --- Handle Video Click ---
 function onWrapperClick(e) {
   const btn = e.target.closest(".youtube-play-btn");
   if (!btn) return;
@@ -159,16 +169,22 @@ function onWrapperClick(e) {
   const vid = wrapper.getAttribute("data-video-id");
   if (!vid) return;
 
-  // Replace thumbnail with iframe
-  wrapper.innerHTML = `<iframe src="https://www.youtube.com/embed/${vid}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  const swiper = window.__wanderYouTubeSwiper;
+  if (swiper) swiper.slideTo(swiper.clickedIndex);
 
-  // Stop swiper autoplay
-  if (window.__wanderYouTubeSwiper) window.__wanderYouTubeSwiper.autoplay.stop();
+  const modal = document.getElementById("videoModal");
+  const player = document.getElementById("videoPlayer");
+  player.src = `https://www.youtube.com/embed/${vid}?autoplay=1`;
+  modal.classList.add("active");
+
+  if (swiper) swiper.autoplay.stop();
 }
 
-// Build YouTube gallery
+// --- Build YouTube Gallery ---
 async function buildYouTubeGallery() {
-  clearWrapper();
+  videoWrapper.innerHTML = "";
+  videoWrapper.style.visibility = "hidden";
+
   let videos = [];
   let nextPageToken = "";
   const maxResults = 50;
@@ -180,7 +196,7 @@ async function buildYouTubeGallery() {
       );
       const searchData = await searchRes.json();
       const videoIds = (searchData.items || [])
-        .filter(item => item.id && item.id.kind === "youtube#video")
+        .filter(item => item.id?.kind === "youtube#video")
         .map(item => item.id.videoId);
       if (!videoIds.length) break;
 
@@ -210,21 +226,19 @@ async function buildYouTubeGallery() {
   const seen = new Set();
   videos = videos.filter(v => v.id && !seen.has(v.id) && seen.add(v.id));
 
-  const highViewVideos = videos.filter(v => v.views >= 10000).sort((a,b) => b.views - a.views);
+  const highViewVideos = videos.filter(v => v.views >= 10000).sort((a, b) => b.views - a.views);
   const topViewed = highViewVideos[0] || null;
   const restHigh = highViewVideos.length > 1 ? highViewVideos.slice(1) : [];
-  const latest = [...videos].sort((a,b) => new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0))[0];
+  const latest = [...videos].sort((a, b) => new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0))[0];
 
   let final = [];
   if (topViewed) final.push(topViewed);
   final = final.concat(restHigh);
   if (latest && !final.find(x => x.id === latest.id)) final.push(latest);
-
   if (final.length < 10) {
-    const others = videos.filter(v => !final.find(f => f.id === v.id)).sort((a,b) => b.views - a.views);
+    const others = videos.filter(v => !final.find(f => f.id === v.id)).sort((a, b) => b.views - a.views);
     final = final.concat(others.slice(0, 10 - final.length));
   }
-
   final = final.slice(0, 10);
 
   final.forEach(video => {
@@ -234,7 +248,8 @@ async function buildYouTubeGallery() {
     slide.innerHTML = `
       <div class="youtube-slide">
         <div class="youtube-thumb-wrapper" data-video-id="${video.id}">
-          <img class="youtube-thumb" alt="${escapeHtml(video.title)}" src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg" loading="lazy" />
+          <img class="youtube-thumb" alt="${escapeHtml(video.title)}"
+            src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg" loading="lazy" />
           <button class="youtube-play-btn" aria-label="Play ${escapeHtml(video.title)}">&#9658;</button>
         </div>
         <div class="youtube-info">
@@ -247,11 +262,10 @@ async function buildYouTubeGallery() {
   });
 
   videoWrapper.addEventListener("click", onWrapperClick);
-
-  setTimeout(initYouTubeSwiper, 150);
+  setTimeout(initYouTubeSwiper, 200);
 }
 
-// Initialize Swiper
+// --- Swiper Initialization ---
 function initYouTubeSwiper() {
   if (typeof Swiper === "undefined") {
     videoWrapper.style.visibility = "visible";
@@ -259,7 +273,7 @@ function initYouTubeSwiper() {
   }
 
   if (window.__wanderYouTubeSwiper?.destroy) {
-    try { window.__wanderYouTubeSwiper.destroy(true, true); } catch(e){ }
+    try { window.__wanderYouTubeSwiper.destroy(true, true); } catch (e) { }
     window.__wanderYouTubeSwiper = null;
   }
 
@@ -271,28 +285,18 @@ function initYouTubeSwiper() {
     centeredSlides: true,
     spaceBetween: 20,
     pagination: { el: ".swiper-pagination", clickable: true },
-    breakpoints: { 768:{slidesPerView:2}, 992:{slidesPerView:3}, 1200:{slidesPerView:4} },
-    initialSlide: 0,
+    breakpoints: { 768: { slidesPerView: 2 }, 992: { slidesPerView: 3 }, 1200: { slidesPerView: 4 } },
     on: {
-      slideChange: function() {
-        document.querySelectorAll('.swiper-slide iframe').forEach(iframe => {
-          iframe.src = iframe.src; // stop video on slide change
-        });
+      slideChange: () => {
+        document.querySelectorAll('.swiper-slide iframe').forEach(iframe => iframe.src = iframe.src);
       }
     }
-  });
-
-  // Stop autoplay if video is playing inside slides
-  document.querySelectorAll(".swiper-slide iframe").forEach(iframe => {
-    iframe.addEventListener("play", () => swiper.autoplay.stop());
-    iframe.addEventListener("pause", () => swiper.autoplay.start());
   });
 
   window.__wanderYouTubeSwiper = swiper;
   videoWrapper.style.visibility = "visible";
 }
 
-// Start gallery
+// --- Start Gallery ---
 buildYouTubeGallery();
-
 })();
