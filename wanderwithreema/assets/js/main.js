@@ -120,104 +120,126 @@
   
 <!-- YouTube Gallery Script -->
 const API_KEY = "AIzaSyAgSIF-DPHEAqjqPAf2CSa02BiTJAhECzs";
-const CHANNEL_ID = "UCzrsI894Qk73JO0qQNiaP_g";
-const videoWrapper = document.getElementById("youtube-video-wrapper");
+  const CHANNEL_ID = "UCzrsI894Qk73JO0qQNiaP_g";
+  const videoWrapper = document.getElementById("youtube-video-wrapper");
 
-async function getAllVideos() {
-  let videos = [];
-  let nextPageToken = '';
-  const maxResults = 50;
+  async function getAllVideos() {
+    let videos = [];
+    let nextPageToken = '';
+    const maxResults = 50;
 
-  do {
-    const searchRes = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=${maxResults}&pageToken=${nextPageToken}`
-    );
-    const searchData = await searchRes.json();
+    do {
+      const searchRes = await fetch(
+        `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=${maxResults}&pageToken=${nextPageToken}`
+      );
+      const searchData = await searchRes.json();
 
-    const videoIds = searchData.items
-      .filter(item => item.id.kind === "youtube#video")
-      .map(item => item.id.videoId);
+      const videoIds = searchData.items
+        .filter(item => item.id.kind === "youtube#video")
+        .map(item => item.id.videoId);
 
-    if (!videoIds.length) break;
+      if (!videoIds.length) break;
 
-    const statsRes = await fetch(
-      `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${videoIds.join(',')}&part=statistics,snippet`
-    );
-    const statsData = await statsRes.json();
+      const statsRes = await fetch(
+        `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${videoIds.join(',')}&part=statistics,snippet`
+      );
+      const statsData = await statsRes.json();
 
-    statsData.items.forEach(video => {
-      const views = parseInt(video.statistics.viewCount);
-      if (views >= 1000) {
+      statsData.items.forEach(video => {
         videos.push({
           id: video.id,
           title: video.snippet.title,
-          views,
+          views: parseInt(video.statistics.viewCount),
+          publishedAt: video.snippet.publishedAt,
           channel: video.snippet.channelTitle
         });
-      }
-    });
+      });
 
-    nextPageToken = searchData.nextPageToken;
-  } while (nextPageToken);
+      nextPageToken = searchData.nextPageToken;
+    } while (nextPageToken);
 
-  // Sort videos by view count descending
-  videos.sort((a, b) => b.views - a.views);
+    // Filter 10K+ view videos
+    const highViewVideos = videos.filter(v => v.views >= 10000);
 
-  // Append video cards
-  videos.forEach(video => {
-    const formattedViews = video.views >= 1_000_000
-      ? (video.views / 1_000_000).toFixed(1) + 'M'
-      : (video.views / 1000).toFixed(1) + 'K';
+    // Sort high view videos by views descending
+    highViewVideos.sort((a, b) => b.views - a.views);
 
-    const slide = document.createElement('div');
-    slide.classList.add('swiper-slide');
-    slide.innerHTML = `
-      <div class="youtube-slide">
-        <iframe src="https://www.youtube.com/embed/${video.id}" allowfullscreen></iframe>
-        <div class="youtube-info">
-          <p class="title"><span class="shorts-icon"></span>${video.title}</p>
-          <p class="views">${formattedViews} views</p>
+    // Get the top-viewed one
+    const topViewed = highViewVideos[0];
+
+    // Get the most recent uploaded video overall
+    const latestVideo = [...videos].sort(
+      (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
+    )[0];
+
+    // Combine: top viewed → rest high views → latest
+    let finalVideos = [];
+    if (topViewed) finalVideos.push(topViewed);
+
+    const restHighViews = highViewVideos.slice(1);
+    finalVideos = finalVideos.concat(restHighViews);
+
+    if (latestVideo && !finalVideos.find(v => v.id === latestVideo.id)) {
+      finalVideos.push(latestVideo);
+    }
+
+    // Limit to 10 total
+    finalVideos = finalVideos.slice(0, 10);
+
+    // Append video slides
+    finalVideos.forEach(video => {
+      const formattedViews = video.views >= 1_000_000
+        ? (video.views / 1_000_000).toFixed(1) + 'M'
+        : (video.views / 1000).toFixed(1) + 'K';
+
+      const slide = document.createElement('div');
+      slide.classList.add('swiper-slide');
+      slide.innerHTML = `
+        <div class="youtube-slide">
+          <iframe src="https://www.youtube.com/embed/${video.id}" allowfullscreen></iframe>
+          <div class="youtube-info">
+            <p class="title"><span class="shorts-icon"></span>${video.title}</p>
+            <p class="views">${formattedViews} views</p>
+          </div>
         </div>
-      </div>
-    `;
-    videoWrapper.appendChild(slide);
-  });
-
-  // Wait for all iframes to load
-  const iframes = videoWrapper.querySelectorAll('iframe');
-  let loadedCount = 0;
-
-  iframes.forEach(iframe => {
-    iframe.addEventListener('load', () => {
-      loadedCount++;
-      if (loadedCount === iframes.length) {
-        initSwiper(); // All iframes are loaded
-      }
+      `;
+      videoWrapper.appendChild(slide);
     });
-  });
-}
 
-function initSwiper() {
-  const swiper = new Swiper('.init-swiper', {
-    loop: true,
-    speed: 600,
-    autoplay: { delay: 4000 },
-    slidesPerView: 1,
-    centeredSlides: true,
-    spaceBetween: 20,
-    pagination: { el: '.swiper-pagination', clickable: true },
-    breakpoints: {
-      768: { slidesPerView: 2 },
-      992: { slidesPerView: 3 },
-      1200: { slidesPerView: 4 },
-    },
-  });
+    // Wait for iframes to load before initializing swiper
+    const iframes = videoWrapper.querySelectorAll('iframe');
+    let loadedCount = 0;
+    iframes.forEach(iframe => {
+      iframe.addEventListener('load', () => {
+        loadedCount++;
+        if (loadedCount === iframes.length) {
+          initYouTubeSwiper();
+        }
+      });
+    });
+  }
 
-  // Now reveal the wrapper to avoid initial layout flicker
-  videoWrapper.style.visibility = 'visible';
-}
+  function initYouTubeSwiper() {
+    const swiper = new Swiper('.init-swiper', {
+      loop: true,
+      speed: 600,
+      autoplay: { delay: 4000 },
+      slidesPerView: 1,
+      centeredSlides: true,
+      spaceBetween: 20,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      breakpoints: {
+        768: { slidesPerView: 2 },
+        992: { slidesPerView: 3 },
+        1200: { slidesPerView: 4 },
+      },
+      initialSlide: 0 // ensures starts from first (top viewed)
+    });
 
-// Start the process
-getAllVideos();
+    videoWrapper.style.visibility = 'visible';
+  }
+
+  // Start fetching shorts
+  getAllVideos();
 
 })();
