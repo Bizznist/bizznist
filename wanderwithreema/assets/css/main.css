@@ -721,23 +721,19 @@ section,
   overflow: clip;
 }
 
-section,
-.section #brand {
+#brand {
     background-color: #e2c5ea !important;
 }
 
-section,
-.section #about {
+#about {
   background-color: #f2f0dd !important;
 }
 
-section,
-.section #gallery {
+#gallery {
   background-color: #f2f0dd !important;
 }
 
-section,
-.section .footer .row.gy-1 {
+.footer .row.gy-1 {
     background-color: #051986 ;
     color: #fefefe;
 }
