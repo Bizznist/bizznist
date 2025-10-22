@@ -717,16 +717,18 @@ section,
 .section {
   color: var(--default-color);
   background-color: #ebd3ed;
-  padding: 60px 0;
+  padding: 20px 0;
   scroll-margin-top: 90px;
   overflow: clip;
 }
 
-section#brand {
+section,
+.section #brand {
     background-color: #e2c5ea;
 }
 
-section#about {
+section,
+.section #about {
   background-color: #f2f0dd;
 }
 
