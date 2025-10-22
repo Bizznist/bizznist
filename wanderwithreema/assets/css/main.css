@@ -723,22 +723,22 @@ section,
 
 section,
 .section #brand {
-    background-color: #e2c5ea;
+    background-color: #e2c5ea !important;
 }
 
 section,
 .section #about {
-  background-color: #f2f0dd;
+  background-color: #f2f0dd !important;
 }
 
 section,
 .section #gallery {
-  background-color: #f2f0dd;
+  background-color: #f2f0dd !important;
 }
 
 section,
 .section #footer {
-    background-color: #051986;
+    background-color: #051986 ;
     color: #fefefe;
 }
 
