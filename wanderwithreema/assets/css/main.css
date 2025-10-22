@@ -737,7 +737,7 @@ section,
 }
 
 section,
-.section #footer {
+.section .footer .row.gy-1 {
     background-color: #051986 ;
     color: #fefefe;
 }
