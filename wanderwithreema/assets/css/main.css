@@ -515,9 +515,9 @@ h6 {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
+  border: 1px solid color-mix(in srgb, #ffffff, transparent 50%);
   font-size: 16px;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  color: #ffffff, transparent 20%);
   margin-right: 10px;
   transition: 0.3s;
 }
@@ -716,10 +716,23 @@ h6 {
 section,
 .section {
   color: var(--default-color);
-  background-color: var(--background-color);
+  background-color: #ebd3ed;
   padding: 60px 0;
   scroll-margin-top: 90px;
   overflow: clip;
+}
+
+section#brand {
+    background-color: #e2c5ea;
+}
+
+section#about {
+  background-color: #f2f0dd;
+}
+
+#footer.row.gy-1 {
+    background-color: #051986;
+    color: #fefefe;
 }
 
 @media (max-width: 1199px) {
