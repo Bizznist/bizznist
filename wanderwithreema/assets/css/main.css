@@ -517,7 +517,7 @@ h6 {
   border-radius: 50%;
   border: 1px solid color-mix(in srgb, #ffffff, transparent 50%);
   font-size: 16px;
-  color: #ffffff, transparent 20%);
+  color: #ffffff;
   margin-right: 10px;
   transition: 0.3s;
 }
@@ -719,23 +719,6 @@ section,
   padding: 20px 0;
   scroll-margin-top: 90px;
   overflow: clip;
-}
-
-#brand {
-    background-color: #e2c5ea !important;
-}
-
-#about {
-  background-color: #f2f0dd !important;
-}
-
-#gallery {
-  background-color: #f2f0dd !important;
-}
-
-.footer .row.gy-1 {
-    background-color: #051986 ;
-    color: #fefefe;
 }
 
 @media (max-width: 1199px) {
