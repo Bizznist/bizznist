@@ -716,7 +716,6 @@ h6 {
 section,
 .section {
   color: var(--default-color);
-  background-color: #ebd3ed;
   padding: 20px 0;
   scroll-margin-top: 90px;
   overflow: clip;
@@ -729,6 +728,11 @@ section,
 
 section,
 .section #about {
+  background-color: #f2f0dd;
+}
+
+section,
+.section #gallery {
   background-color: #f2f0dd;
 }
 
