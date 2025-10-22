@@ -300,3 +300,14 @@ function initYouTubeSwiper() {
 // --- Start Gallery ---
 buildYouTubeGallery();
 })();
+
+async function updateYouTubeGallery() {
+  const response = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=10`);
+  const data = await response.json();
+
+  if (data.items && data.items.length > 0) {
+    // Your existing video update logic here
+    console.log("Videos updated. Pinging Google for reindexing...");
+    fetch("https://www.google.com/ping?sitemap=https://www.bizznist.com/sitemap.xml");
+  }
+}
