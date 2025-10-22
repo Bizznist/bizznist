@@ -311,3 +311,18 @@ async function updateYouTubeGallery() {
     fetch("https://www.google.com/ping?sitemap=https://www.bizznist.com/sitemap.xml");
   }
 }
+
+fetch("https://api.indexnow.org/indexnow", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    host: "www.bizznist.com",
+    key: "6a1e0f1c8b124b3d9e56f3b6f2ab1234",
+    urlList: [
+      "https://www.bizznist.com/iamreemaroy",
+      "https://www.bizznist.com/blog"
+    ]
+  })
+})
+  .then(() => console.log("✅ IndexNow notified Bing/Yandex"))
+  .catch(() => console.log("❌ IndexNow failed"));
