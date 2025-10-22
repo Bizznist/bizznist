@@ -732,7 +732,8 @@ section,
   background-color: #f2f0dd;
 }
 
-#footer.row.gy-1 {
+section,
+.section #footer.row.gy-1 {
     background-color: #051986;
     color: #fefefe;
 }
