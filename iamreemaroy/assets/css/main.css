@@ -830,7 +830,7 @@ section,
 }
 
 .about ul li {
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   display: flex;
   align-items: center;
 }
